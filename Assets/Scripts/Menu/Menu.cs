@@ -10,17 +10,15 @@ public class Menu : MonoBehaviour
     [SerializeField]
     GameObject settingsMenu;
 
-    Conductor conductor = new Conductor();
-
     #region Main Menu
     public void NewGame()
     {
-        conductor.ShowScene(Conductor.Scenes.DemoScene);
+        Conductor.ShowScene(Conductor.Scenes.GameScene);
     }
 
     public void ContinueGame()
     {
-        conductor.ShowScene(Conductor.Scenes.DemoScene);
+        Conductor.ShowScene(Conductor.Scenes.GameScene);
     }
 
     public void Settings()

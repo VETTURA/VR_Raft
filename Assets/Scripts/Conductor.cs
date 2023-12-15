@@ -8,10 +8,10 @@ public class Conductor
     public enum Scenes
     {
         MainMenu = 0,
-        DemoScene = 1
+        GameScene = 1
     }
 
-    public void ShowScene(Scenes scene)
+    public static void ShowScene(Scenes scene)
     {
         SceneManager.LoadScene((int)scene, LoadSceneMode.Single);
     }

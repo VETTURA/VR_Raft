@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DamageZone : MonoBehaviour
 {
+    [SerializeField]
     private float damage = 0.1f;
 
     private GameObject player;
 
     private bool enter = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("XR Origin (XR Rig)");
@@ -32,5 +32,6 @@ public class DamageZone : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         enter = false;
+        player.GetComponent<Player>().StopDamage();
     }
 }
