@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Healing();
-        Appetite();
+        //Appetite();
         ChangeVision();
     }
 
