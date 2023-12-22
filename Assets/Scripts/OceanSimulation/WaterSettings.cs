@@ -6,7 +6,7 @@ using UnityEngine;
 public class WaterSettings : ScriptableObject
 {
     [Header("Vertex Settings")]
-    public float vertexSeed = 0;
+    
     public float vertexSeedIter = 1253.2131f;
     public float vertexFrequency = 1.0f;
     public float vertexFrequencyMult = 1.18f;

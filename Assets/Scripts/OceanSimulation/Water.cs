@@ -52,10 +52,10 @@ public class Water : MonoBehaviour
     private Vector3[] displacedNormals;
 
     [Header("FBM Settings")]
+    public float vertexSeed = 0;
     public int vertexWaveCount = 8;
     public int fragmentWaveCount = 40;
 
-    private float vertexSeed;
     private float vertexSeedIter;
     private float vertexFrequency;
     private float vertexFrequencyMult;
@@ -104,7 +104,6 @@ public class Water : MonoBehaviour
 
     private void GetSettings(WaterSettings waterSettings)
     {
-        vertexSeed = waterSettings.vertexSeed;
         vertexSeedIter = waterSettings.vertexSeedIter;
         vertexFrequency = waterSettings.vertexFrequency;
         vertexFrequencyMult = waterSettings.vertexFrequencyMult;
@@ -263,7 +262,6 @@ public class Water : MonoBehaviour
         Matrix4x4 projMatrix = GL.GetGPUProjectionMatrix(cam.projectionMatrix, false);
         Matrix4x4 viewProjMatrix = projMatrix * cam.worldToCameraMatrix;
         waterMaterial.SetMatrix("_CameraInvViewProjection", viewProjMatrix.inverse);
-
         waterMaterial.SetInt("_VertexWaveCount", vertexWaveCount);
         waterMaterial.SetFloat("_VertexSeed", vertexSeed);
         waterMaterial.SetFloat("_VertexSeedIter", vertexSeedIter);

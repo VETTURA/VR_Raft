@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d28db35e050bfa4a99668513c184ea6, type: 3}
   m_Name: Stormy
   m_EditorClassIdentifier: 
-  vertexSeed: 0
   vertexSeedIter: 1066
   vertexFrequency: 0.67
   vertexFrequencyMult: 1.18
