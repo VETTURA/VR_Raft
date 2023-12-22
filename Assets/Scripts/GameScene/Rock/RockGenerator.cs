@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Rock : MonoBehaviour
+public class RockGenerator : MonoBehaviour
 {
     private System.Random rnd = new();
 
@@ -59,7 +60,7 @@ public class Rock : MonoBehaviour
 
                     float rotation = rnd.Next(100, 36000) / 100;
 
-                    float scale = rnd.Next(150, 300) / 100;
+                    float scale = rnd.Next(150, 500) / 100;
 
                     rockPositions.Add(new Position(xPosition, yDeviation, zPosition, rotation, scale));
                 }
