@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Raft : MonoBehaviour
 {
-
     Vector3 raftPosition;
     Vector3 targetPosition;
 
