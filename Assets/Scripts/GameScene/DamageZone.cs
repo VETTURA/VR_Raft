@@ -16,7 +16,7 @@ public class DamageZone : MonoBehaviour
         player = GameObject.Find("XR Origin (XR Rig)");
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if(enter)
         {

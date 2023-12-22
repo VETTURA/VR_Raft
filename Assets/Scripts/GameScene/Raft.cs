@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Raft : MonoBehaviour
 {
-
     Vector3 raftPosition;
     Vector3 targetPosition;
 
@@ -24,11 +23,17 @@ public class Raft : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GameObject.Find("XR Interaction Setup").transform.SetParent(gameObject.transform);
+        if(other.name == "XR Origin (XR Rig)")
+        {
+            GameObject.Find("XR Interaction Setup").transform.SetParent(gameObject.transform);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        GameObject.Find("XR Interaction Setup").transform.SetParent(null);
+        if (other.name == "XR Origin (XR Rig)")
+        {
+            GameObject.Find("XR Interaction Setup").transform.SetParent(null);
+        }
     }
 }

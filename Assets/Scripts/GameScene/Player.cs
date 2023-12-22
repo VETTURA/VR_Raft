@@ -18,10 +18,10 @@ public class Player : MonoBehaviour
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Healing();
-        Appetite();
+        //Appetite();
         ChangeVision();
     }
 
