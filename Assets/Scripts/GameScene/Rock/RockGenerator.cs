@@ -72,7 +72,7 @@ public class RockGenerator : MonoBehaviour
     {
         foreach(var rock in rockPositions) 
         {
-            int element = rnd.Next(0, rocksPrefab.Count + 1);
+            int element = rnd.Next(0, rocksPrefab.Count);
 
             GameObject gameObject = Instantiate(
                 rocksPrefab[element], 

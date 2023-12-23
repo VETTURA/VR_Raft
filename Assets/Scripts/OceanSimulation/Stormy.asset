@@ -12,38 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d28db35e050bfa4a99668513c184ea6, type: 3}
   m_Name: Stormy
   m_EditorClassIdentifier: 
-  vertexSeedIter: 1066
-  vertexFrequency: 0.67
-  vertexFrequencyMult: 1.18
+  vertexSeedIter: 4.3
+  vertexFrequency: 0.5
+  vertexFrequencyMult: 1.16
   vertexAmplitude: 1
-  vertexAmplitudeMult: 0.82
+  vertexAmplitudeMult: 0.83
   vertexInitialSpeed: 2
   vertexSpeedRamp: 1.07
-  vertexDrag: 1
-  vertexHeight: 1.74
-  vertexMaxPeak: 1.05
-  vertexPeakOffset: 1
-  fragmentFrequency: 0.67
-  fragmentFrequencyMult: 1.18
+  vertexDrag: 0.5
+  vertexHeight: 2
+  vertexMaxPeak: 1
+  vertexPeakOffset: 0.96
+  fragmentFrequency: 0.5
+  fragmentFrequencyMult: 1.16
   fragmentAmplitude: 1
-  fragmentAmplitudeMult: 0.82
+  fragmentAmplitudeMult: 0.83
   fragmentInitialSpeed: 2
   fragmentSpeedRamp: 1.07
-  fragmentDrag: 1
-  fragmentMaxPeak: 1.05
-  fragmentPeakOffset: 1.19
-  normalStrength: 0.37
+  fragmentDrag: 0.5
+  fragmentMaxPeak: 1
+  fragmentPeakOffset: 1.29
+  normalStrength: 1
   ambient: {r: 0.041718576, g: 0.051772006, b: 0.07075471, a: 1}
   diffuseReflectance: {r: 0.11176471, g: 0.1627451, b: 0.22745098, a: 1}
   specularReflectance: {r: 0.22386487, g: 0.32405886, b: 0.44645596, a: 1}
   shininess: 7.2
   specularNormalStrength: 2.66
-  fresnelColor: {r: 0.03390834, g: 0.03390834, b: 0.03321709, a: 0}
-  useTextureForFresnel: 0
-  environmentTexture: {fileID: 8900000, guid: c8f21f62fdb3e43c5b32917c84683698, type: 3}
-  fresnelBias: 2.45
-  fresnelStrength: 1.22
-  fresnelShininess: 1.15
-  fresnelNormalStrength: 1.49
+  fresnelColor: {r: 0.042311423, g: 0.051269468, b: 0.07036011, a: 0}
+  useTextureForFresnel: 1
+  environmentTexture: {fileID: 8900000, guid: c06c5d67fbcdc5d48bf33149a1300834, type: 3}
+  fresnelBias: 1
+  fresnelStrength: 0.8
+  fresnelShininess: 1.7
+  fresnelNormalStrength: 1
   tipColor: {r: 0.125, g: 0.125, b: 0.125, a: 0}
-  tipAttenuation: 12.65
+  tipAttenuation: 8

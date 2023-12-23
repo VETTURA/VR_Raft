@@ -185,12 +185,6 @@ Shader "Unlit/UnlitOcean"
 				return 0.0f;
 			}
 
-			float hash(uint n) {
-				// integer hash copied from Hugo Elias
-				n = (n << 13U) ^ n;
-				n = n * (n * n * 15731U + 0x789221U) + 0x1376312589U;
-				return float(n & uint(0x7fffffffU)) / float(0x7fffffff);
-			}
 
 			float3 _SunDirection, _SunColor;
 
@@ -215,7 +209,7 @@ Shader "Unlit/UnlitOcean"
 
 				float h = 0.0f;
 				float2 n = 0.0f;
-				for (int wi = 0; wi < _VertexWaveCount; ++wi) {
+				for (int wi = 3; wi < _VertexWaveCount; ++wi) {
 					float2 d = normalize(float2(cos(seed), sin(seed)));
 
 					float x = dot(d, p.xz) * f + _Time.y * speed;
