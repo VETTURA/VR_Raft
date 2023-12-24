@@ -63,7 +63,7 @@ public class Buoyancy : MonoBehaviour
         {
             if (v != null)
             {
-
+                //v = transform.positi
             }
         }
     }

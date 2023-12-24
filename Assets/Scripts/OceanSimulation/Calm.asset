@@ -42,7 +42,7 @@ MonoBehaviour:
   useTextureForFresnel: 1
   environmentTexture: {fileID: 8900000, guid: 08ea713d0e79d8e4aa41c53a0bad3fa5, type: 3}
   fresnelBias: 1
-  fresnelStrength: 1.05
+  fresnelStrength: 0.5
   fresnelShininess: 1.68
   fresnelNormalStrength: 1
   tipColor: {r: 1, g: 1, b: 1, a: 0}
