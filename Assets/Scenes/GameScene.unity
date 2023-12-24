@@ -1911,9 +1911,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21150dbae32b4b544b870370198401ca, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 641812485}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21150dbae32b4b544b870370198401ca, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 641812482}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21150dbae32b4b544b870370198401ca, type: 3}
       insertIndex: -1
@@ -1921,6 +1918,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21150dbae32b4b544b870370198401ca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 641812483}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21150dbae32b4b544b870370198401ca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 641812485}
     - targetCorrespondingSourceObject: {fileID: -7754685161131783878, guid: 21150dbae32b4b544b870370198401ca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 474820597}
@@ -2034,7 +2034,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641812480}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9e09b83c9ff90940a11a4f939cc5c30, type: 3}
   m_Name: 
@@ -2086,7 +2086,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1 &650025388
 GameObject:

@@ -142,8 +142,6 @@ public class Water : MonoBehaviour
         tipAttenuation = waterSettings.tipAttenuation;
     }
 
-    
-
     private void CreateWaterPlane()
     {
         GetComponent<MeshFilter>().mesh = mesh = new Mesh();
