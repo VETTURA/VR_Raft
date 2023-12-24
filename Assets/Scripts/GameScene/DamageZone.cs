@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DamageZone : MonoBehaviour
@@ -7,31 +5,34 @@ public class DamageZone : MonoBehaviour
     [SerializeField]
     private float damage = 0.1f;
 
-    private GameObject player;
-
-    private bool enter = false;
+    private Player player;
 
     void Start()
     {
-        player = GameObject.Find("XR Origin (XR Rig)");
-    }
-
-    void FixedUpdate()
-    {
-        if(enter)
-        {
-            player.GetComponent<Player>().DamagePlayer(damage);
-        }
+        player = FindObjectOfType<Player>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        enter = true;
+        if (other.name == player.name)
+        {
+            player.Damage = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.name == player.name)
+        {
+            player.DamagePlayer(damage);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        enter = false;
-        player.GetComponent<Player>().StopDamage();
+        if (other.name == player.name)
+        {
+            player.Damage = false;
+        }
     }
 }

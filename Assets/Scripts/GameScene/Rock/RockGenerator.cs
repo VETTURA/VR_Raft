@@ -1,26 +1,47 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class RockGenerator : MonoBehaviour
 {
     private System.Random rnd = new();
+    
+    [SerializeField]
+    public float minZDistance = -400.0f;
 
-    private const float MIN_Z_DISTANCE = -400.0f;
-    private const float MAX_Z_DISTANCE = -1900.0f;
-    private const float MIN_X_DISTANCE = -1000.0f;
-    private const float MAX_X_DISTANCE = 1000.0f;
+    [SerializeField]
+    public float maxZDistance = -1900.0f;
+
+    [SerializeField]
+    public float minXDistance = -1000.0f;
+
+    [SerializeField]
+    public float maxXDistance = 1000.0f;
+
+    [SerializeField]
+    public float minYDeviation = 0;
+
+    [SerializeField]
+    public float maxYDeviation = -5.0f;
+
+    [SerializeField]
+    public float minRotation = 0;
+
+    [SerializeField]
+    public float maxRotation = 360;
+
+    [SerializeField]
+    public float maxScale = 5.0f;
+
+    [SerializeField]
+    public float minScale = 1.5f;
 
     List<GameObject> rocksPrefab;
-    List<GameObject> rocksObject = new List<GameObject>();
-    List<Position> rockPositions = new List<Position>();
+    List<GameObject> rocksObject = new();
 
     void Start()
     {
         GetPrefabs();
-        GetPosition();
         SpawnRock();
     }
 
@@ -28,79 +49,67 @@ public class RockGenerator : MonoBehaviour
     {
         rocksPrefab = new List<GameObject> 
         {
-            (GameObject)Resources.Load("Prefabs/Level/Rocks/Rock_1", typeof(GameObject)),
-            (GameObject)Resources.Load("Prefabs/Level/Rocks/Rock_2", typeof(GameObject)),
-            (GameObject)Resources.Load("Prefabs/Level/Rocks/Rock_3", typeof(GameObject))
+            (GameObject)Resources.Load("Prefabs/Level/Rocks/Rock_1"),
+            (GameObject)Resources.Load("Prefabs/Level/Rocks/Rock_2"),
+            (GameObject)Resources.Load("Prefabs/Level/Rocks/Rock_3")
         };
     }
 
-    private void GetPosition()
+    private void SpawnRock()
     {
-        int countParallels = rnd.Next(5, 15);
-        float zStep = (MAX_Z_DISTANCE - MIN_Z_DISTANCE) / countParallels;
+        var countParallels = rnd.Next(5, 15);
+        var zStep = CalculateStep(minZDistance, maxZDistance, countParallels);
 
-        int countMeridians = rnd.Next(50, 100);
-        float xStep = (MAX_X_DISTANCE - MIN_X_DISTANCE) / countMeridians;
+        var countMeridians = rnd.Next(50, 100);
+        var xStep = CalculateStep(minXDistance, maxXDistance, countMeridians);
 
-        for(int i = 0; i < countParallels; i++)
+        for(var i = 0; i < countParallels; i++)
         {
-            for(int j = 0; j < countMeridians; j++)
+            for(var j = 0; j < countMeridians; j++)
             {
-                float probability = (float)rnd.NextDouble();
+                var probability = rnd.NextDouble();
 
                 if(probability > 0.6)
                 {
-                    float zDeviation = rnd.Next(Math.Abs((int)zStep) * -100, Math.Abs((int)zStep) * 100) / 100;
-                    float xDeviation = rnd.Next(Math.Abs((int)xStep) * -100, Math.Abs((int)xStep) * 100) / 100;
+                    var zPosition = CalculatePosition(i, zStep, minZDistance);
+                    var xPosition = CalculatePosition(j, xStep, minXDistance);
 
-                    float zPosition = i * zStep + zDeviation + MIN_Z_DISTANCE;
-                    float xPosition = j * xStep + xDeviation + MIN_X_DISTANCE;
+                    var yDeviation = CalculateFloatValue(maxYDeviation, minYDeviation);
 
-                    float yDeviation = rnd.Next(-500, 0) / 100;
+                    var rotation = CalculateFloatValue(minRotation, maxRotation);
 
-                    float rotation = rnd.Next(100, 36000) / 100;
+                    var scale = CalculateFloatValue(minScale, maxScale);
 
-                    float scale = rnd.Next(150, 500) / 100;
+                    var element = rnd.Next(0, rocksPrefab.Count);
 
-                    rockPositions.Add(new Position(xPosition, yDeviation, zPosition, rotation, scale));
+                    GameObject rockGameObject = Instantiate(
+                        rocksPrefab[element],
+                        new(xPosition, yDeviation, zPosition),
+                        Quaternion.Euler(0, rotation, 0),
+                        gameObject.transform);
+
+                    rockGameObject.transform.localScale = new(scale, scale, scale);
+                    rocksObject.Add(rockGameObject);
                 }
             }
         }
     }
 
-    private void SpawnRock()
+    private float CalculateStep(float min, float max, int count)
     {
-        foreach(var rock in rockPositions) 
-        {
-            int element = rnd.Next(0, rocksPrefab.Count);
-
-            GameObject gameObject = Instantiate(
-                rocksPrefab[element], 
-                new Vector3(rock.xPosition, rock.yPosition, rock.zPosition), 
-                Quaternion.identity);
-
-            gameObject.transform.Rotate(0, rock.rotate, 0);
-            gameObject.transform.localScale = new Vector3(rock.scale, rock.scale, rock.scale);
-
-            rocksObject.Add(gameObject);
-        }
+        return (max - min) / count;
     }
-}
 
-class Position
-{
-    public float xPosition { get; set; }
-    public float yPosition { get; set; }
-    public float zPosition { get; set; }
-    public float rotate { get; set; }
-    public float scale { get; set; }
-
-    public Position(float xPosition, float yPosition, float zPosition, float rotate, float scale)
+    private float CalculatePosition(int iter, float step, float distance)
     {
-        this.xPosition = xPosition;
-        this.zPosition = zPosition;
-        this.yPosition = yPosition;
-        this.rotate = rotate;
-        this.scale = scale;
+        var deviation = rnd.Next(Math.Abs((int)step) * -100, Math.Abs((int)step) * 100) / 100;
+        var position = iter * step + deviation + distance;
+
+        return position;
+    }
+
+    private float CalculateFloatValue(float left, float right)
+    {
+        return rnd.Next((int)(left * 100), (int)(right * 100)) / 100;
     }
 }

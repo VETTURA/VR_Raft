@@ -1,94 +1,138 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float health = 100.0f;
-    private float hunger = 100.0f;
+    [SerializeField]
+    private float _health = 100.0f;
+    private float maxHealth;
+    public float Health
+    {
+        get => _health;
+        set
+        {
+            Debug.Log("Health:" + _health);
+            _health = value;
+            if (_health < 0)
+            {
+                Conductor.ShowScene(Conductor.Scenes.MainMenu);
+            }
+        }
+    }
 
-    private bool damage = false;
+    [SerializeField]
+    private float healingValue = 0.5f;
+
+    [SerializeField]
+    private float _hunger = 100.0f;
+    public float Hunger
+    {
+        get => _hunger;
+        set
+        {
+            Debug.Log("Hunger:" + _hunger);
+            _hunger = value;
+        }
+    }
+
+    [SerializeField]
+    private float appetiteValue = 0.1f;
+
+    [SerializeField]
+    private float hungerDamageValue = 0.01f;
+
+    [SerializeField]
+    private bool _damage = false;
+    public bool Damage
+    {
+        get => _damage;
+        set 
+        {
+            _damage = value;
+        }
+    }
 
     [SerializeField]
     private GameObject damageVision;
+    private Material damageVisionMaterial;
 
-    void Start()
+    public const string FEATHERINGEFFECT = "_FeatheringEffect";
+    public const string VIGNETTECOLOR = "_VignetteColor";
+
+    public const float MINFEATHERINGEFFECT = 0.08f;
+    public const float MAXFEATHERINGEFFECT = 0.3f;
+
+    public const float MINALPHAVIGNETTECOLOR = 0;
+    public const float MAXALPHAVIGNETTECOLORT = 0.96f;
+
+    private void Start()
     {
-
+        maxHealth = _health;
+        damageVisionMaterial = damageVision.GetComponent<Renderer>().sharedMaterial;
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        Healing();
-        //Appetite();
+        var deltaTime = Time.deltaTime;
+
+        Healing(deltaTime);
+        Appetite(deltaTime);
         ChangeVision();
     }
 
+    #region Health
     public void DamagePlayer(float damageValue)
     {
-        health -= damageValue;
-        damage = true;
+        Health -= damageValue;
+    }
 
-        if(health < 0)
+    private void Healing(float deltaTime)
+    {
+        if (Damage == false && Health < maxHealth)
         {
-            //Сделать экран поражения, пока просто перенос в меню
-            Conductor.ShowScene(Conductor.Scenes.MainMenu);
+            Health += healingValue * deltaTime;
         }
     }
+    #endregion
 
-    public void StopDamage()
+    #region Hunger   
+    private void Appetite(float deltaTime)
     {
-        damage = false;
-    }
-
-    private void Healing()
-    {
-        if(damage == false && health < 100)
+        if (Hunger > 0)
         {
-            health += 0.01f;
-        }
-    }
-
-    private void Appetite()
-    {
-        if(hunger > 0)
-        {
-            hunger -= 0.1f;
+            Hunger -= appetiteValue * deltaTime;
         }
         else
         {
-            DamagePlayer(0.01f);
+            DamagePlayer(hungerDamageValue);
         }
     }
-    
+
     private void Eating(float foodValue)
     {
-        damage = false;
-        hunger += foodValue;
+        Hunger += foodValue;
     }
+    #endregion
 
+    #region Vision
     private void ChangeVision()
     {
-        float featheringEffect = 0.3f - ((0.3f - 0.08f) / 100 * (100 - hunger));
-        float alphaVignetteColor = 0.96f / 100 * (100 - hunger);
+        float featheringEffect = MAXFEATHERINGEFFECT - ((MAXFEATHERINGEFFECT - MINFEATHERINGEFFECT) / 100 * (100 - Hunger));
+        float alphaVignetteColor = (MAXALPHAVIGNETTECOLORT - MINALPHAVIGNETTECOLOR) / 100 * (100 - Hunger);
         float rVignetteColor = 0;
 
-        if(damage || health < 50)
+        if (Health < 50 || Hunger <= 0 || Damage)
         {
             rVignetteColor = 0.75f;
 
-            if(featheringEffect > 0.1)
+            if (featheringEffect > 0.1)
             {
                 featheringEffect = 0.1f;
                 alphaVignetteColor = 0.7f;
             }
         }
 
-        if(featheringEffect > 0.08)
-        {
-            damageVision.GetComponent<Renderer>().sharedMaterial.SetFloat("_FeatheringEffect", featheringEffect);
-            damageVision.GetComponent<Renderer>().sharedMaterial.SetColor("_VignetteColor", new Color(rVignetteColor, 0, 0, alphaVignetteColor));
-        }
+        damageVisionMaterial.SetFloat(FEATHERINGEFFECT, featheringEffect);
+        damageVisionMaterial.SetColor(VIGNETTECOLOR, new(rVignetteColor, 0, 0, alphaVignetteColor));
     }
+    #endregion
 }

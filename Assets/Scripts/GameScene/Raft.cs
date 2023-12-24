@@ -1,39 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class Raft : MonoBehaviour
 {
-    Vector3 raftPosition;
-    Vector3 targetPosition;
+    //TODO переписать как только будет готова физическая вода
+    [SerializeField]
+    private float _raftSpeed = 0.1f;
 
-    public float raftSpeed = 0.3f;
+    public float RaftSpeed
+    {
+        get => _raftSpeed;
+        set
+        {
+            _raftSpeed = value;
+        }
+    }
+
+    private Player player;
+
+    Vector3 targetPosition;
 
     void Start()
     {
-        raftPosition = transform.position;
-        targetPosition = new Vector3(raftPosition.x, raftPosition.y, raftPosition.z - 100);
+        player = FindObjectOfType<Player>();
+        targetPosition = new(transform.position.x, transform.position.y, transform.position.z - 1900);
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        transform.Translate(targetPosition.normalized * raftSpeed);
+        var deltaTime = Time.deltaTime;
+
+        MoveRaft(deltaTime);
+    }
+
+    private void MoveRaft(float deltaTime)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, RaftSpeed * deltaTime);
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name == "XR Origin (XR Rig)")
+        if (other.name == player.name)
         {
-            GameObject.Find("XR Interaction Setup").transform.SetParent(gameObject.transform);
+            player.transform.parent.SetParent(gameObject.transform);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.name == "XR Origin (XR Rig)")
+        if (other.name == player.name)
         {
-            GameObject.Find("XR Interaction Setup").transform.SetParent(null);
+            player.transform.parent.transform.SetParent(null);
         }
     }
 }
