@@ -12,24 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d28db35e050bfa4a99668513c184ea6, type: 3}
   m_Name: Stormy
   m_EditorClassIdentifier: 
-  vertexSeedIter: 1366
-  vertexFrequency: 0.5
+  vertexSeedIter: 369
+  vertexFrequency: 0.4
   vertexFrequencyMult: 1.16
   vertexAmplitude: 1
   vertexAmplitudeMult: 0.83
   vertexInitialSpeed: 2
   vertexSpeedRamp: 1.07
-  vertexDrag: 0.8
+  vertexDrag: 2
   vertexHeight: 1.8
   vertexMaxPeak: 1
   vertexPeakOffset: 0.96
-  fragmentFrequency: 0.5
+  fragmentFrequency: 0.4
   fragmentFrequencyMult: 1.16
   fragmentAmplitude: 1
   fragmentAmplitudeMult: 0.83
   fragmentInitialSpeed: 2
   fragmentSpeedRamp: 1.07
-  fragmentDrag: 0.8
+  fragmentDrag: 2
   fragmentMaxPeak: 1
   fragmentPeakOffset: 1.3
   normalStrength: 1
