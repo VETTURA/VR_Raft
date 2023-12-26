@@ -3,10 +3,10 @@ using UnityEngine;
 public class Menu : MonoBehaviour
 {
     [SerializeField]
-    GameObject mainMenu;
+    private GameObject mainMenu;
 
     [SerializeField]
-    GameObject settingsMenu;
+    private GameObject settingsMenu;
 
     #region Main Menu
     public void NewGame()

@@ -36,8 +36,8 @@ public class RockGenerator : MonoBehaviour
     [SerializeField]
     public float minScale = 1.5f;
 
-    List<GameObject> rocksPrefab;
-    List<GameObject> rocksObject = new();
+    private List<GameObject> rocksPrefab;
+    private List<GameObject> rocksObject = new();
 
     void Start()
     {
@@ -102,14 +102,14 @@ public class RockGenerator : MonoBehaviour
 
     private float CalculatePosition(int iter, float step, float distance)
     {
-        var deviation = rnd.Next(Math.Abs((int)step) * -100, Math.Abs((int)step) * 100) / 100;
+        var deviation = rnd.NextDouble() * step * 2 - step;
         var position = iter * step + deviation + distance;
 
-        return position;
+        return (float)position;
     }
 
     private float CalculateFloatValue(float left, float right)
     {
-        return rnd.Next((int)(left * 100), (int)(right * 100)) / 100;
+        return (float)(rnd.NextDouble() * (right - left) + left);
     }
 }

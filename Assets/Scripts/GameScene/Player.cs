@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
 
     private void Healing(float deltaTime)
     {
-        if (Damage == false && Health < maxHealth)
+        if (!Damage && Health < maxHealth)
         {
             Health += healingValue * deltaTime;
         }

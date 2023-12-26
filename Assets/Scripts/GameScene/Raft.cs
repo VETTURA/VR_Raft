@@ -15,9 +15,23 @@ public class Raft : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private bool _isMoving = true;
+
+    public bool IsMoving
+    {
+        get => _isMoving;
+        set
+        {
+            _isMoving = value;
+        }
+    }
+
     private Player player;
 
-    Vector3 targetPosition;
+    private Vector3 targetPosition;
+
+    public const string INTEACTABLEITEMTAG = "InteractableItem";
 
     void Start()
     {
@@ -34,15 +48,22 @@ public class Raft : MonoBehaviour
 
     private void MoveRaft(float deltaTime)
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, RaftSpeed * deltaTime);
-
+        if (IsMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, RaftSpeed * deltaTime);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == player.name)
         {
-            player.transform.parent.SetParent(gameObject.transform);
+            player.transform.parent.SetParent(gameObject.transform, true);
+        }
+
+        if (other.tag == INTEACTABLEITEMTAG)
+        {
+            other.transform.parent.SetParent(gameObject.transform, true);
         }
     }
 
@@ -50,7 +71,12 @@ public class Raft : MonoBehaviour
     {
         if (other.name == player.name)
         {
-            player.transform.parent.transform.SetParent(null);
+            player.transform.parent.transform.SetParent(null, true);
+        }
+
+        if (other.tag == INTEACTABLEITEMTAG)
+        {
+            other.transform.parent.SetParent(null, true);
         }
     }
 }
