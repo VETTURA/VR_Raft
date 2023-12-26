@@ -18,10 +18,10 @@ public class Buoyancy : MonoBehaviour
     private float avgHeight = 0;
     private int asyncGPUCount = 0;
     private int asyncGPUCountDistinct = 0;
-    private float NormalIntensity = 0.5f;
     private float NormalThreshold = 0.001f;
     private float NormalLerpSpeed = 1;
 
+    public float NormalIntensity = 0.5f;
     public float initialHeight;
     public float heightStr = 1;
 
@@ -88,7 +88,7 @@ public class Buoyancy : MonoBehaviour
         {
             var fromLook = Quaternion.LookRotation(Vector3.forward - Vector3.Project(Vector3.forward, currNormal), currNormal);
             var toLook = Quaternion.LookRotation(Vector3.forward - Vector3.Project(Vector3.forward, targetNormal), targetNormal);
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.RotateTowards(fromLook, toLook, 90f), Time.deltaTime * NormalLerpSpeed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.RotateTowards(fromLook, toLook, 90f), Time.deltaTime * NormalLerpSpeed);
         }
 
         transform.localPosition = new Vector3(transform.localPosition.x, initialHeight + avgHeight * heightStr, transform.localPosition.z);
