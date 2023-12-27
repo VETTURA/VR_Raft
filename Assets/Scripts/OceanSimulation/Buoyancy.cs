@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using Unity.Collections;
 using System.Linq;
+using System.Collections;
 
 public class Buoyancy : MonoBehaviour
 {
@@ -25,16 +26,11 @@ public class Buoyancy : MonoBehaviour
     public float initialHeight;
     public float heightStr = 1;
 
+    public float yVelocity = 0.0f;
+
     Water water;
     private Mesh _mesh;
     
-    private void Start()
-    {
-        oceanTexture2D = new Texture2D(textureScanWidth, textureScanWidth);
-        oceanPixelsPersist = new NativeArray<byte>(textureScanWidth * textureScanWidth, Unity.Collections.Allocator.Persistent);
-        initialHeight = transform.localPosition.y;
-    }
-
     private void OnDestroy()
     {
         //oceanPixelsPersist.Dispose();
@@ -77,6 +73,13 @@ public class Buoyancy : MonoBehaviour
         var v1 = Vector3.Cross(points[2] - points[0], points[1] - points[0]);
         var v2 = Vector3.Cross(points[0] - points[2], points[3] - points[2]);
         return (v1 + v2).normalized;
+    }
+
+    private void Start()
+    {
+        oceanTexture2D = new Texture2D(textureScanWidth, textureScanWidth);
+        oceanPixelsPersist = new NativeArray<byte>(textureScanWidth * textureScanWidth, Unity.Collections.Allocator.Persistent);
+        initialHeight = transform.localPosition.y;
     }
 
     private void Update()

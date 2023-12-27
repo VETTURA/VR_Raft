@@ -8,22 +8,28 @@ using UnityEngine.Rendering;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class Water : MonoBehaviour
 {
-    public delegate void OnWeatherChanged(WaterSettings targetSettings, float duration, Color skyboxColor);
-    public static event OnWeatherChanged weatherChanged;
-
+    public delegate void OnWeatherChanged(WaterSettings targetSettings, float duration);
+    public event OnWeatherChanged weatherChanged;
+    public bool startActive = true;
 
     public Shader waterShader;
 
     [SerializeField]
-    private WaterSettings _waterSettings;
-    public WaterSettings WaterConfig
-    {
-        get { return _waterSettings;}
-        set { _waterSettings = value; }
-    }
+    public WaterSettings _waterSettings;
+    //public WaterSettings WaterConfig
+    //{
+    //    get { return _waterSettings;}
+    //    set { _waterSettings = value; }
+    //}
 
     [SerializeField]
-    private List<WaterSettings> waterState;
+    private List<WaterSettings> _waterState;
+    public List<WaterSettings> WaterState
+    {
+        get { return _waterState; }
+        set { _waterState = value; }
+    }
+
     public float weatherLerpDuration = 3.0f;
 
     public int planeLength = 10;
@@ -83,8 +89,6 @@ public class Water : MonoBehaviour
     private Color tipColor;
     private float tipAttenuation;
 
-    private Color skyboxColor1;
-    private Color skyboxColor2;
 
     private void SetFragmentSettings()
     {
@@ -215,93 +219,82 @@ public class Water : MonoBehaviour
         renderer.material = waterMaterial;
     }
 
-    IEnumerator WaterSettingsBlend(WaterSettings targetSettings, float duration, Color skyboxColor)
+    IEnumerator WaterSettingsBlend(WaterSettings targetSettings, float duration)
     {
-        Color currentSkyboxColor = RenderSettings.skybox.GetColor("_SkyTint");
-        WaterSettings currentSettings = WaterConfig;
+        WaterSettings currentSettings = _waterSettings;
         float time = 0;
-        float timeScale = time / duration;
 
         while (time < duration)
         {
-            vertexSeedIter = Mathf.Lerp(currentSettings.vertexSeedIter, targetSettings.vertexSeedIter, time / duration);
-            vertexFrequency = Mathf.Lerp(currentSettings.vertexFrequency, targetSettings.vertexFrequency, time / duration);
-            vertexFrequencyMult = Mathf.Lerp(currentSettings.vertexFrequencyMult, targetSettings.vertexFrequencyMult, time / duration);
-            vertexAmplitude = Mathf.Lerp(currentSettings.vertexAmplitude, targetSettings.vertexAmplitude, time / duration);
-            vertexAmplitudeMult = Mathf.Lerp(currentSettings.vertexAmplitudeMult, targetSettings.vertexAmplitudeMult, time / duration);
-            vertexInitialSpeed = Mathf.Lerp(currentSettings.vertexInitialSpeed, targetSettings.vertexInitialSpeed, time / duration);
-            vertexSpeedRamp = Mathf.Lerp(currentSettings.vertexSpeedRamp, targetSettings.vertexSpeedRamp, time / duration);
-            vertexDrag = Mathf.Lerp(currentSettings.vertexDrag, targetSettings.vertexDrag, time / duration);
-            vertexHeight = Mathf.Lerp(currentSettings.vertexHeight, targetSettings.vertexHeight, time / duration);
-            vertexMaxPeak = Mathf.Lerp(currentSettings.vertexMaxPeak, targetSettings.vertexMaxPeak, time / duration);
-            vertexPeakOffset = Mathf.Lerp(currentSettings.vertexPeakOffset, targetSettings.vertexPeakOffset, time / duration);
+            //vertexSeedIter = Mathf.Lerp(currentSettings.vertexSeedIter, targetSettings.vertexSeedIter, time / duration);
+            //vertexFrequency = Mathf.Lerp(currentSettings.vertexFrequency, targetSettings.vertexFrequency, time / duration);
+            //vertexFrequencyMult = Mathf.Lerp(currentSettings.vertexFrequencyMult, targetSettings.vertexFrequencyMult, time / duration);
+            //vertexAmplitude = Mathf.Lerp(currentSettings.vertexAmplitude, targetSettings.vertexAmplitude, time / duration);
+            //vertexAmplitudeMult = Mathf.Lerp(currentSettings.vertexAmplitudeMult, targetSettings.vertexAmplitudeMult, time / duration);
+            //vertexInitialSpeed = Mathf.Lerp(currentSettings.vertexInitialSpeed, targetSettings.vertexInitialSpeed, time / duration);
+            //vertexSpeedRamp = Mathf.Lerp(currentSettings.vertexSpeedRamp, targetSettings.vertexSpeedRamp, time / duration);
+            //vertexDrag = Mathf.Lerp(currentSettings.vertexDrag, targetSettings.vertexDrag, time / duration);
+            //vertexHeight = Mathf.Lerp(currentSettings.vertexHeight, targetSettings.vertexHeight, time / duration);
+            //vertexMaxPeak = Mathf.Lerp(currentSettings.vertexMaxPeak, targetSettings.vertexMaxPeak, time / duration);
+            //vertexPeakOffset = Mathf.Lerp(currentSettings.vertexPeakOffset, targetSettings.vertexPeakOffset, time / duration);
+            //
+            //fragmentFrequency = Mathf.Lerp(currentSettings.fragmentFrequency, targetSettings.fragmentFrequency, time / duration);
+            //fragmentFrequencyMult = Mathf.Lerp(currentSettings.fragmentFrequencyMult, targetSettings.fragmentFrequencyMult, time / duration);
+            //fragmentAmplitude = Mathf.Lerp(currentSettings.fragmentAmplitude, targetSettings.fragmentAmplitude, time / duration);
+            //fragmentAmplitudeMult = Mathf.Lerp(currentSettings.fragmentAmplitudeMult, targetSettings.fragmentAmplitudeMult, time / duration);
+            //fragmentInitialSpeed = Mathf.Lerp(currentSettings.fragmentInitialSpeed, targetSettings.fragmentInitialSpeed, time / duration);
+            //fragmentSpeedRamp = Mathf.Lerp(currentSettings.fragmentSpeedRamp, targetSettings.fragmentSpeedRamp, time / duration);
+            //fragmentDrag = Mathf.Lerp(currentSettings.fragmentDrag, targetSettings.fragmentDrag, time / duration);
+            //fragmentMaxPeak = Mathf.Lerp(currentSettings.fragmentMaxPeak, targetSettings.fragmentMaxPeak, time / duration);
+            //fragmentPeakOffset = Mathf.Lerp(currentSettings.fragmentPeakOffset, targetSettings.fragmentPeakOffset, time / duration);
 
-            fragmentFrequency = Mathf.Lerp(currentSettings.fragmentFrequency, targetSettings.fragmentFrequency, time / duration);
-            fragmentFrequencyMult = Mathf.Lerp(currentSettings.fragmentFrequencyMult, targetSettings.fragmentFrequencyMult, time / duration);
-            fragmentAmplitude = Mathf.Lerp(currentSettings.fragmentAmplitude, targetSettings.fragmentAmplitude, time / duration);
-            fragmentAmplitudeMult = Mathf.Lerp(currentSettings.fragmentAmplitudeMult, targetSettings.fragmentAmplitudeMult, time / duration);
-            fragmentInitialSpeed = Mathf.Lerp(currentSettings.fragmentInitialSpeed, targetSettings.fragmentInitialSpeed, time / duration);
-            fragmentSpeedRamp = Mathf.Lerp(currentSettings.fragmentSpeedRamp, targetSettings.fragmentSpeedRamp, time / duration);
-            fragmentDrag = Mathf.Lerp(currentSettings.fragmentDrag, targetSettings.fragmentDrag, time / duration);
-            fragmentMaxPeak = Mathf.Lerp(currentSettings.fragmentMaxPeak, targetSettings.fragmentMaxPeak, time / duration);
-            fragmentPeakOffset = Mathf.Lerp(currentSettings.fragmentPeakOffset, targetSettings.fragmentPeakOffset, time / duration);
-
-            ambient = Color.Lerp(currentSettings.ambient, targetSettings.ambient, time / duration);
-            diffuseReflectance = Color.Lerp(currentSettings.diffuseReflectance, targetSettings.diffuseReflectance, time / duration);
-            specularReflectance = Color.Lerp(currentSettings.specularReflectance, targetSettings.specularReflectance, time / duration);
             shininess = Mathf.Lerp(currentSettings.shininess, targetSettings.shininess, time / duration);
             specularNormalStrength = Mathf.Lerp(currentSettings.specularNormalStrength, targetSettings.specularNormalStrength, time / duration);
-            fresnelColor = Color.Lerp(currentSettings.fresnelColor, targetSettings.fresnelColor, time / duration);
             //useTextureForFresnel = waterSettings.useTextureForFresnel;
             environmentTexture = targetSettings.environmentTexture;
             fresnelBias = Mathf.Lerp(currentSettings.fresnelBias, targetSettings.fresnelBias, time / duration);
             fresnelStrength = Mathf.Lerp(currentSettings.fresnelStrength, targetSettings.fresnelStrength, time / duration);
             fresnelShininess = Mathf.Lerp(currentSettings.fresnelShininess, targetSettings.fresnelShininess, time / duration);
             fresnelNormalStrength = Mathf.Lerp(currentSettings.fresnelNormalStrength, targetSettings.fresnelNormalStrength, time / duration);
-            tipColor = Color.Lerp(currentSettings.tipColor, targetSettings.tipColor, time / duration);
             tipAttenuation = Mathf.Lerp(currentSettings.tipAttenuation, targetSettings.tipAttenuation, time / duration);
-            RenderSettings.skybox.SetColor("_SkyTint", Color.Lerp(currentSkyboxColor, skyboxColor, time / duration));
+
+            ambient = Color.Lerp(currentSettings.ambient, targetSettings.ambient, time / duration);
+            diffuseReflectance = Color.Lerp(currentSettings.diffuseReflectance, targetSettings.diffuseReflectance, time / duration);
+            specularReflectance = Color.Lerp(currentSettings.specularReflectance, targetSettings.specularReflectance, time / duration);
+            fresnelColor = Color.Lerp(currentSettings.fresnelColor, targetSettings.fresnelColor, time / duration);
+            tipColor = Color.Lerp(currentSettings.tipColor, targetSettings.tipColor, time / duration);
 
             time += Time.deltaTime;
             yield return null;
         }
 
-        WaterConfig = targetSettings;
-        RenderSettings.skybox.SetColor("_SkyTint", skyboxColor);
+        _waterSettings = targetSettings;
+        //RenderSettings.skybox.SetColor("_SkyTint", skyboxColor);
     }
 
-    private void WaterSettingsBlendHandler(WaterSettings targetSettings, float duration, Color skyboxColor)
+    public void WaterSettingsBlendHandler(WaterSettings targetSettings, float duration)
     {
-        StartCoroutine(WaterSettingsBlend(targetSettings, duration, skyboxColor));
+        StartCoroutine(WaterSettingsBlend(targetSettings, duration));
     }
 
     private void Start()
     {
-        weatherChanged += WaterSettingsBlendHandler;
-    }
+        //if (startActive) { gameObject.SetActive(true); }
+        //if (!startActive) { gameObject.SetActive(false); }
 
-    void OnEnable()
-    {
-        waterState.Add(Resources.Load<WaterSettings>("OceanStates/Calm"));
-        waterState.Add(Resources.Load<WaterSettings>("OceanStates/Stormy"));
-        WaterConfig = waterState[0];
-        skyboxColor1 = new Color(0.5f, 0.5f, 0.5f);
-        skyboxColor2 = new Color(0, 0, 0);
-        RenderSettings.skybox.SetColor("_SkyTint", skyboxColor1);
+        WaterState.Add(Resources.Load<WaterSettings>("OceanStates/Calm"));
+        WaterState.Add(Resources.Load<WaterSettings>("OceanStates/Stormy"));
 
         CreateWaterPlane();
         CreateMaterial();
-        RetrieveInitSettings(WaterConfig);
+        RetrieveInitSettings(_waterSettings);
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+
+        weatherChanged += WaterSettingsBlendHandler;
     }
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    if (WaterConfig == waterState[0]) { weatherChanged(waterState[1], weatherLerpDuration, skyboxColor2); }
-        //    if (WaterConfig == waterState[1]) { weatherChanged(waterState[0], weatherLerpDuration, skyboxColor1); }
-        //}
         waterMaterial.SetVector("_Ambient", ambient);
         waterMaterial.SetVector("_DiffuseReflectance", diffuseReflectance);
         waterMaterial.SetVector("_SpecularReflectance", specularReflectance);

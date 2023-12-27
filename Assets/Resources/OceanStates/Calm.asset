@@ -23,7 +23,7 @@ MonoBehaviour:
   vertexHeight: 0.49
   vertexMaxPeak: 1
   vertexPeakOffset: 1
-  fragmentFrequency: 1
+  fragmentFrequency: 0.5
   fragmentFrequencyMult: 1.18
   fragmentAmplitude: 0.7
   fragmentAmplitudeMult: 0.82

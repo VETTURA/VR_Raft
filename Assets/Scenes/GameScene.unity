@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17064807, g: 0.16549915, b: 0.16012517, a: 1}
+  m_IndirectSpecularColor: {r: 0.09589856, g: 0.1089375, b: 0.14254268, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2108,7 +2108,8 @@ MonoBehaviour:
   textureScanWidth: 150
   NormalIntensity: 1
   initialHeight: 0
-  heightStr: 2
+  heightStr: 6
+  yVelocity: 0
 --- !u!1 &650025388
 GameObject:
   m_ObjectHideFlags: 0
@@ -3546,6 +3547,113 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1079548040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1079548041}
+  - component: {fileID: 1079548045}
+  - component: {fileID: 1079548044}
+  - component: {fileID: 1079548042}
+  m_Layer: 6
+  m_Name: StormyOcean
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1079548041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079548040}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.22, z: -0.48529884}
+  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1763845970}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1079548042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079548040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728fcb6e7fc2ab143b2bea20c60e5eeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startActive: 1
+  waterShader: {fileID: 4800000, guid: c22398465b173314695d898d44bbdb41, type: 3}
+  _waterSettings: {fileID: 11400000, guid: 847af2c866b8fee40adaa8126f205b81, type: 2}
+  _waterState: []
+  weatherLerpDuration: 3
+  planeLength: 100
+  quadRes: 20
+  vertexSeed: 0
+  vertexWaveCount: 5
+  fragmentWaveCount: 30
+  normalStrength: 1
+--- !u!23 &1079548044
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079548040}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1079548045
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079548040}
+  m_Mesh: {fileID: 0}
 --- !u!1 &1081815497
 GameObject:
   m_ObjectHideFlags: 0
@@ -3570,7 +3678,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081815497}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9e09b83c9ff90940a11a4f939cc5c30, type: 3}
   m_Name: 
@@ -3589,7 +3697,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1401125604}
+  - {fileID: 1763845970}
   - {fileID: 1460272299}
   - {fileID: 641812481}
   m_Father: {fileID: 0}
@@ -4487,10 +4595,9 @@ GameObject:
   - component: {fileID: 1401125604}
   - component: {fileID: 1401125607}
   - component: {fileID: 1401125606}
-  - component: {fileID: 1401125609}
   - component: {fileID: 1401125605}
   m_Layer: 6
-  m_Name: Ocean
+  m_Name: CalmOcean
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4509,7 +4616,7 @@ Transform:
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1081815499}
+  m_Father: {fileID: 1763845970}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1401125605
 MonoBehaviour:
@@ -4523,10 +4630,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728fcb6e7fc2ab143b2bea20c60e5eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weather: 0
+  startActive: 1
   waterShader: {fileID: 4800000, guid: c22398465b173314695d898d44bbdb41, type: 3}
-  _waterSettings: {fileID: 0}
-  waterState: []
+  _waterSettings: {fileID: 11400000, guid: fd7b594e99d040a428df002411833ec0, type: 2}
+  _waterState: []
   weatherLerpDuration: 3
   planeLength: 100
   quadRes: 20
@@ -4584,20 +4691,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401125603}
   m_Mesh: {fileID: 0}
---- !u!114 &1401125609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1401125603}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a24ca463426e9b549a05fceb70621e70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WindPower: 0
-  WindDirection: {x: 0, y: 0}
 --- !u!1 &1403825290
 GameObject:
   m_ObjectHideFlags: 0
@@ -10931,6 +11024,58 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1763845969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1763845970}
+  - component: {fileID: 1763845971}
+  m_Layer: 0
+  m_Name: OceanHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1763845970
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763845969}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1401125604}
+  - {fileID: 1079548041}
+  m_Father: {fileID: 1081815499}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1763845971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763845969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a699662ba7d0c304291ecd2e2a924f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  children: []
+  waterComponent: []
+  _currentChild: {fileID: 0}
+  skyboxColors: []
+  lerpDuration: 3
+  cycleDuration: 15
 --- !u!1 &1815318735
 GameObject:
   m_ObjectHideFlags: 0

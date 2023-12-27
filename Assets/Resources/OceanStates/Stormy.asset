@@ -32,7 +32,7 @@ MonoBehaviour:
   fragmentDrag: 2
   fragmentMaxPeak: 1
   fragmentPeakOffset: 0.6
-  normalStrength: 1
+  normalStrength: 0.16
   ambient: {r: 0.041718576, g: 0.051772006, b: 0.07075471, a: 1}
   diffuseReflectance: {r: 0.11176471, g: 0.1627451, b: 0.22745098, a: 1}
   specularReflectance: {r: 0.22386487, g: 0.32405886, b: 0.44645596, a: 1}
