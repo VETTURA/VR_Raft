@@ -31,17 +31,34 @@ public class MoveItems : MonoBehaviour
     }
 
     [SerializeField]
+    private bool _upMove = false;
+
+    public bool UpMove
+    {
+        get => _upMove;
+        set
+        {
+            _upMove = value;
+        }
+    }
+
+    [SerializeField]
     private float destroyDistance = 100.0f;
 
+    [SerializeField]
+    private float emergeDistance = 3.0f;
+
     private Raft raft;
+    private Water water;
 
     private Vector3 targetPosition;
 
     void Start()
     {
         raft = FindFirstObjectByType<Raft>();
+        water = FindAnyObjectByType<Water>();
 
-        targetPosition = new(transform.position.x, raft.transform.position.y, transform.position.z + destroyDistance);
+        CalculateTargetPosition();
     }
 
     void Update()
@@ -49,6 +66,13 @@ public class MoveItems : MonoBehaviour
         var deltaTime = Time.deltaTime;
 
         MoveItem(deltaTime);
+    }
+
+    public void CalculateTargetPosition()
+    {
+        targetPosition = UpMove ? 
+            new(transform.position.x, water.transform.position.y, transform.position.z + emergeDistance) : 
+            new(transform.position.x, water.transform.position.y, transform.position.z + destroyDistance);
     }
 
     private void MoveItem(float deltaTime)
@@ -60,7 +84,15 @@ public class MoveItems : MonoBehaviour
 
         if(transform.position == targetPosition)
         {
-            Destroy(gameObject);
+            if (UpMove)
+            {
+                UpMove = false;
+                CalculateTargetPosition();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
