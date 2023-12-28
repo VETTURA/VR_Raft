@@ -27,11 +27,6 @@ public class OceanHandler : MonoBehaviour
     public float lerpDuration = 3.0f;
     public float cycleDuration = 10.0f;
 
-    public void SetNewTransform(GameObject child, Transform target)
-    {
-        child.transform.localPosition = target.localPosition;
-    }
-
     IEnumerator BlendOceans(List<GameObject> children, float duration, List<Color> skyboxColor)
     {
         Color currentSkyboxColor = RenderSettings.skybox.GetColor("_SkyTint");
@@ -54,18 +49,7 @@ public class OceanHandler : MonoBehaviour
         children.Reverse();
         waterComponent.Reverse();
         skyboxColors.Reverse();
-    }
-
-    private void WaterStateCondition(int index, float duration)
-    {
-        if (waterComponent[index]._waterSettings == waterComponent[index].WaterState[0])
-        {
-            waterComponent[index].WaterSettingsBlendHandler(waterComponent[index].WaterState[1], duration);
-        }
-        if (waterComponent[index]._waterSettings == waterComponent[index].WaterState[1])
-        {
-            waterComponent[index].WaterSettingsBlendHandler(waterComponent[index].WaterState[0], duration);
-        }
+        yield break;
     }
 
     IEnumerator WeatherCycle(float duration)
@@ -80,9 +64,11 @@ public class OceanHandler : MonoBehaviour
             }
 
             handler(ref children, lerpDuration, ref skyboxColors);
-            
-            WaterStateCondition(0, duration);
-            WaterStateCondition(1, duration);
+
+            waterComponent[0].peepeepoopoo(duration);
+            //waterComponent[1]._waterSettings = waterComponent[1].WaterState[]
+            waterComponent[1].peepeepoopoo(duration);
+            //WaterStateCondition(1, duration);
         }
     }
 
@@ -110,10 +96,5 @@ public class OceanHandler : MonoBehaviour
         CurrentChild = children[0];
 
         StartCoroutine(WeatherCycle(cycleDuration));
-    }
-
-    private void Update()
-    {
-
     }
 }

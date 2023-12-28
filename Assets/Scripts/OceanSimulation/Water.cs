@@ -269,7 +269,23 @@ public class Water : MonoBehaviour
         }
 
         _waterSettings = targetSettings;
+        //WaterState.Reverse();
         //RenderSettings.skybox.SetColor("_SkyTint", skyboxColor);
+        yield break;
+    }
+
+    public void peepeepoopoo(float duration)
+    {
+        if (_waterSettings == WaterState[0])
+        {
+            StartCoroutine(WaterSettingsBlend(WaterState[1], duration));
+            StartCoroutine(WaterSettingsBlend(WaterState[0], duration));
+        }
+        if (_waterSettings == WaterState[1])
+        {
+            StartCoroutine(WaterSettingsBlend(WaterState[0], duration));
+            StartCoroutine(WaterSettingsBlend(WaterState[1], duration));
+        }
     }
 
     public void WaterSettingsBlendHandler(WaterSettings targetSettings, float duration)
