@@ -59,11 +59,11 @@ public class ItemsGenerator : MonoBehaviour
     {
         itemsPrefab = new()
         {
-            //new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Paddle"), 0.1f),
-            //new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Net"), 0.2f),
-            new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Stick"), 1f),
-            //new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Fishes/Fish_1"), 0.7f),
-            //new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Fishes/Fish_2"), 0.7f),
+            new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Paddle"), 0.1f),
+            new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Net"), 0.2f),
+            new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Stick"), 0.8f),
+            new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Fishes/Fish_1"), 0.7f),
+            new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Fishes/Fish_2"), 0.7f),
         };
     }
 
