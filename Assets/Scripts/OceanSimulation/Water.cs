@@ -39,6 +39,13 @@ public class Water : MonoBehaviour
 
     private ComputeBuffer waveBuffer;
 
+    private RenderTexture _buoyDataTexture;
+    public RenderTexture BuoyDataTexture
+    {
+        get { return _buoyDataTexture; }
+        set { _buoyDataTexture = value; }
+    }
+
     private Material waterMaterial;
     private Mesh mesh;
     private Vector3[] vertices;
@@ -88,7 +95,6 @@ public class Water : MonoBehaviour
     private float fresnelNormalStrength;
     private Color tipColor;
     private float tipAttenuation;
-
 
     private void SetFragmentSettings()
     {
@@ -293,10 +299,27 @@ public class Water : MonoBehaviour
         StartCoroutine(WaterSettingsBlend(targetSettings, duration));
     }
 
+    private RenderTexture CreateRenderTexture(int width, int height, RenderTextureFormat format, bool useMips)
+    {
+        RenderTexture rt = new RenderTexture(width, height, 0, format, RenderTextureReadWrite.Linear);
+        rt.dimension = UnityEngine.Rendering.TextureDimension.Tex2DArray;
+        rt.filterMode = FilterMode.Bilinear;
+        rt.wrapMode = TextureWrapMode.Repeat;
+        rt.enableRandomWrite = true;
+        rt.useMipMap = useMips;
+        rt.autoGenerateMips = false;
+        rt.anisoLevel = 16;
+        rt.Create();
+
+        return rt;
+    }
+
     private void Start()
     {
         //if (startActive) { gameObject.SetActive(true); }
         //if (!startActive) { gameObject.SetActive(false); }
+
+        BuoyDataTexture = CreateRenderTexture(1024, 1024, RenderTextureFormat.RHalf, false);
 
         WaterState.Add(Resources.Load<WaterSettings>("OceanStates/Calm"));
         WaterState.Add(Resources.Load<WaterSettings>("OceanStates/Stormy"));
