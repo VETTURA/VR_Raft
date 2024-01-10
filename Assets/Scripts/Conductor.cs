@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Conductor
@@ -8,11 +5,12 @@ public class Conductor
     public enum Scenes
     {
         MainMenu = 0,
-        GameScene = 1
+        GameScene = 1,
     }
 
-    public static void ShowScene(Scenes scene)
+    public static void ShowScene(Scenes scene, LoadSceneMode loadSceneMode = LoadSceneMode.Single)
     {
-        SceneManager.LoadScene((int)scene, LoadSceneMode.Single);
+        var sceneId = (int)scene;
+        SceneManager.LoadScene(sceneId, loadSceneMode);
     }
 }
