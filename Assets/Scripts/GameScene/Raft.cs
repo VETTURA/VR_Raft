@@ -2,6 +2,28 @@ using UnityEngine;
 
 public class Raft : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject stage0;
+
+    [SerializeField]
+    private GameObject stage1;
+
+    [SerializeField]
+    private GameObject stage2;
+
+    private GameObject currentStage;
+
+    [SerializeField]
+    private float _raftHealth = 100.0f;
+
+    public float RaftHealth
+    {
+        get => _raftHealth;
+        set { 
+            _raftHealth = value; 
+        }
+    }
+
     //TODO переписать как только будет готова физическая вода
     [SerializeField]
     private float _raftSpeed = 0.1f;
@@ -44,6 +66,28 @@ public class Raft : MonoBehaviour
         var deltaTime = Time.deltaTime;
 
         MoveRaft(deltaTime);
+        Debug.Log("ХП плота: " + RaftHealth);
+        HealthCheck();
+    }
+
+    public void DamageRaft(float damageValue)
+    {
+        RaftHealth -= damageValue;
+    }
+
+    private void HealthCheck()
+    {
+        if (RaftHealth < 60)
+        {
+            stage0.SetActive(false);
+            stage1.SetActive(true);
+        }
+
+        if (RaftHealth < 30)
+        {
+            stage1.SetActive(false);
+            stage2.SetActive(true);
+        }
     }
 
     private void MoveRaft(float deltaTime)

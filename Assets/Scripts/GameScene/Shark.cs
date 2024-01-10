@@ -47,6 +47,9 @@ public class Shark : MonoBehaviour
     [SerializeField]
     private float uppdateTime = 3.0f;
 
+    [SerializeField]
+    private float sharkDamage = 0.01f;
+
     private List<GameObject> attackPoints;
 
     private Raft raft;
@@ -118,7 +121,7 @@ public class Shark : MonoBehaviour
     //Если акула находится в "StartingPosition", то с некоторой вероятностью начать охоту
     public void Hunting(float deltaTime)
     {
-        transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(transform.localPosition.x, -0.4f, transform.localPosition.z), speed * deltaTime);
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(transform.localPosition.x, -0.85f, transform.localPosition.z), speed * deltaTime);
         transform.RotateAround(raft.transform.localPosition, Vector3.up, angularSpeed * deltaTime);
     }
 
@@ -136,10 +139,10 @@ public class Shark : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(raft.transform.position.x, raft.transform.position.y + 1f, raft.transform.position.z) - transform.position), rotationSpeed * deltaTime);
 
 
-        //if (transform.localPosition == nearestPoint.transform.localPosition)
-        //{
-        //    transform.rotation = Quaternion.Euler(-12f, 0, 0);
-        //}
+        if (transform.localPosition == nearestPoint.transform.localPosition)
+        {
+            raft.DamageRaft(sharkDamage);
+        }
 
     }
 
