@@ -75,6 +75,11 @@ public class MoveItems : MonoBehaviour
             new(transform.position.x, water.transform.position.y, transform.position.z + destroyDistance);
     }
 
+    public void ResetRotation()
+    {
+        transform.rotation = Quaternion.identity;
+    }
+
     private void MoveItem(float deltaTime)
     {
         if(IsMove)

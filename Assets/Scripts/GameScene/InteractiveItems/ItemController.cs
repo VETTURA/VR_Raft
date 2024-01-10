@@ -57,6 +57,7 @@ public class ItemController : MonoBehaviour
             {
                 moveItems.UpMove = true;
                 moveItems.IsMove = true;
+                moveItems.ResetRotation();                
                 moveItems.CalculateTargetPosition();
 
                 rb.isKinematic = true;

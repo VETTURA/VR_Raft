@@ -31,7 +31,7 @@ public class Raft : MonoBehaviour
 
     private Vector3 targetPosition;
 
-    public const string INTEACTABLEITEMTAG = "InteractableItem";
+    public const string INTERACTABLEITEMTAG = "InteractableItem";
 
     void Start()
     {
