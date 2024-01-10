@@ -61,7 +61,7 @@ public class Raft : MonoBehaviour
             player.transform.parent.SetParent(gameObject.transform, true);
         }
 
-        if (other.tag == INTEACTABLEITEMTAG)
+        if (other.tag == INTERACTABLEITEMTAG)
         {
             other.transform.parent.SetParent(gameObject.transform, true);
         }
@@ -74,7 +74,7 @@ public class Raft : MonoBehaviour
             player.transform.parent.transform.SetParent(null, true);
         }
 
-        if (other.tag == INTEACTABLEITEMTAG)
+        if (other.tag == INTERACTABLEITEMTAG)
         {
             other.transform.parent.SetParent(null, true);
         }
