@@ -64,7 +64,7 @@ public class Shark : MonoBehaviour
 
         startRotation = transform.localRotation;
         
-        runAwayPoint = new(0, -1.5f, 0);
+        runAwayPoint = new(0, -5.25f, 0);
 
         raft = FindObjectOfType<Raft>();
 
