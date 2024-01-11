@@ -232,27 +232,27 @@ public class Water : MonoBehaviour
 
         while (time < duration)
         {
-            //vertexSeedIter = Mathf.Lerp(currentSettings.vertexSeedIter, targetSettings.vertexSeedIter, time / duration);
-            //vertexFrequency = Mathf.Lerp(currentSettings.vertexFrequency, targetSettings.vertexFrequency, time / duration);
-            //vertexFrequencyMult = Mathf.Lerp(currentSettings.vertexFrequencyMult, targetSettings.vertexFrequencyMult, time / duration);
-            //vertexAmplitude = Mathf.Lerp(currentSettings.vertexAmplitude, targetSettings.vertexAmplitude, time / duration);
-            //vertexAmplitudeMult = Mathf.Lerp(currentSettings.vertexAmplitudeMult, targetSettings.vertexAmplitudeMult, time / duration);
-            //vertexInitialSpeed = Mathf.Lerp(currentSettings.vertexInitialSpeed, targetSettings.vertexInitialSpeed, time / duration);
-            //vertexSpeedRamp = Mathf.Lerp(currentSettings.vertexSpeedRamp, targetSettings.vertexSpeedRamp, time / duration);
-            //vertexDrag = Mathf.Lerp(currentSettings.vertexDrag, targetSettings.vertexDrag, time / duration);
-            //vertexHeight = Mathf.Lerp(currentSettings.vertexHeight, targetSettings.vertexHeight, time / duration);
-            //vertexMaxPeak = Mathf.Lerp(currentSettings.vertexMaxPeak, targetSettings.vertexMaxPeak, time / duration);
-            //vertexPeakOffset = Mathf.Lerp(currentSettings.vertexPeakOffset, targetSettings.vertexPeakOffset, time / duration);
-            //
-            //fragmentFrequency = Mathf.Lerp(currentSettings.fragmentFrequency, targetSettings.fragmentFrequency, time / duration);
-            //fragmentFrequencyMult = Mathf.Lerp(currentSettings.fragmentFrequencyMult, targetSettings.fragmentFrequencyMult, time / duration);
-            //fragmentAmplitude = Mathf.Lerp(currentSettings.fragmentAmplitude, targetSettings.fragmentAmplitude, time / duration);
-            //fragmentAmplitudeMult = Mathf.Lerp(currentSettings.fragmentAmplitudeMult, targetSettings.fragmentAmplitudeMult, time / duration);
-            //fragmentInitialSpeed = Mathf.Lerp(currentSettings.fragmentInitialSpeed, targetSettings.fragmentInitialSpeed, time / duration);
-            //fragmentSpeedRamp = Mathf.Lerp(currentSettings.fragmentSpeedRamp, targetSettings.fragmentSpeedRamp, time / duration);
-            //fragmentDrag = Mathf.Lerp(currentSettings.fragmentDrag, targetSettings.fragmentDrag, time / duration);
-            //fragmentMaxPeak = Mathf.Lerp(currentSettings.fragmentMaxPeak, targetSettings.fragmentMaxPeak, time / duration);
-            //fragmentPeakOffset = Mathf.Lerp(currentSettings.fragmentPeakOffset, targetSettings.fragmentPeakOffset, time / duration);
+            vertexSeedIter = Mathf.Lerp(currentSettings.vertexSeedIter, targetSettings.vertexSeedIter, time / duration);
+            vertexFrequency = Mathf.Lerp(currentSettings.vertexFrequency, targetSettings.vertexFrequency, time / duration);
+            vertexFrequencyMult = Mathf.Lerp(currentSettings.vertexFrequencyMult, targetSettings.vertexFrequencyMult, time / duration);
+            vertexAmplitude = Mathf.Lerp(currentSettings.vertexAmplitude, targetSettings.vertexAmplitude, time / duration);
+            vertexAmplitudeMult = Mathf.Lerp(currentSettings.vertexAmplitudeMult, targetSettings.vertexAmplitudeMult, time / duration);
+            vertexInitialSpeed = Mathf.Lerp(currentSettings.vertexInitialSpeed, targetSettings.vertexInitialSpeed, time / duration);
+            vertexSpeedRamp = Mathf.Lerp(currentSettings.vertexSpeedRamp, targetSettings.vertexSpeedRamp, time / duration);
+            vertexDrag = Mathf.Lerp(currentSettings.vertexDrag, targetSettings.vertexDrag, time / duration);
+            vertexHeight = Mathf.Lerp(currentSettings.vertexHeight, targetSettings.vertexHeight, time / duration);
+            vertexMaxPeak = Mathf.Lerp(currentSettings.vertexMaxPeak, targetSettings.vertexMaxPeak, time / duration);
+            vertexPeakOffset = Mathf.Lerp(currentSettings.vertexPeakOffset, targetSettings.vertexPeakOffset, time / duration);
+            
+            fragmentFrequency = Mathf.Lerp(currentSettings.fragmentFrequency, targetSettings.fragmentFrequency, time / duration);
+            fragmentFrequencyMult = Mathf.Lerp(currentSettings.fragmentFrequencyMult, targetSettings.fragmentFrequencyMult, time / duration);
+            fragmentAmplitude = Mathf.Lerp(currentSettings.fragmentAmplitude, targetSettings.fragmentAmplitude, time / duration);
+            fragmentAmplitudeMult = Mathf.Lerp(currentSettings.fragmentAmplitudeMult, targetSettings.fragmentAmplitudeMult, time / duration);
+            fragmentInitialSpeed = Mathf.Lerp(currentSettings.fragmentInitialSpeed, targetSettings.fragmentInitialSpeed, time / duration);
+            fragmentSpeedRamp = Mathf.Lerp(currentSettings.fragmentSpeedRamp, targetSettings.fragmentSpeedRamp, time / duration);
+            fragmentDrag = Mathf.Lerp(currentSettings.fragmentDrag, targetSettings.fragmentDrag, time / duration);
+            fragmentMaxPeak = Mathf.Lerp(currentSettings.fragmentMaxPeak, targetSettings.fragmentMaxPeak, time / duration);
+            fragmentPeakOffset = Mathf.Lerp(currentSettings.fragmentPeakOffset, targetSettings.fragmentPeakOffset, time / duration);
 
             shininess = Mathf.Lerp(currentSettings.shininess, targetSettings.shininess, time / duration);
             specularNormalStrength = Mathf.Lerp(currentSettings.specularNormalStrength, targetSettings.specularNormalStrength, time / duration);
@@ -278,20 +278,6 @@ public class Water : MonoBehaviour
         //WaterState.Reverse();
         //RenderSettings.skybox.SetColor("_SkyTint", skyboxColor);
         yield break;
-    }
-
-    public void peepeepoopoo(float duration)
-    {
-        if (_waterSettings == WaterState[0])
-        {
-            StartCoroutine(WaterSettingsBlend(WaterState[1], duration));
-            StartCoroutine(WaterSettingsBlend(WaterState[0], duration));
-        }
-        if (_waterSettings == WaterState[1])
-        {
-            StartCoroutine(WaterSettingsBlend(WaterState[0], duration));
-            StartCoroutine(WaterSettingsBlend(WaterState[1], duration));
-        }
     }
 
     public void WaterSettingsBlendHandler(WaterSettings targetSettings, float duration)

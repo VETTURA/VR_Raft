@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class OceanHandler : MonoBehaviour
 {
-    public List<GameObject> children = new List<GameObject>();
+    public GameObject child;
 
     [SerializeField]
-    private List<Water> waterComponent = new List<Water>();
+    private Water waterComponent;
 
     [SerializeField]
     private GameObject _currentChild;
@@ -21,33 +21,35 @@ public class OceanHandler : MonoBehaviour
     [SerializeField]
     private List<Color> skyboxColors;
 
-    private delegate void OceanEventHandler(ref List<GameObject> children, float duration, ref List<Color> skyboxColor);
+    private delegate void OceanEventHandler(ref Water child, float duration, ref List<Color> skyboxColor);
     private static event OceanEventHandler handler;
 
     public float lerpDuration = 3.0f;
     public float cycleDuration = 10.0f;
 
-    IEnumerator BlendOceans(List<GameObject> children, float duration, List<Color> skyboxColor)
+    IEnumerator BlendOceans(Water waterComponent, float duration, List<Color> skyboxColor)
     {
         Color currentSkyboxColor = RenderSettings.skybox.GetColor("_SkyTint");
 
-        Vector3 activePosition = children[0].transform.localPosition;
-        Vector3 hiddenPosition = children[1].transform.localPosition;
         float time = 0;
+
+        if (waterComponent._waterSettings == waterComponent.WaterState[0])
+        {
+            waterComponent.WaterSettingsBlendHandler(waterComponent.WaterState[1], duration);
+        }
+        if (waterComponent._waterSettings == waterComponent.WaterState[1])
+        {
+            waterComponent.WaterSettingsBlendHandler(waterComponent.WaterState[0], duration);
+        }
 
         while (time < duration)
         {
-            children[1].transform.localPosition = Vector3.Lerp(hiddenPosition, activePosition, time / duration);
-            children[0].transform.localPosition = Vector3.Lerp(activePosition, hiddenPosition, time / duration);
-            
             RenderSettings.skybox.SetColor("_SkyTint", Color.Lerp(currentSkyboxColor, skyboxColor[1], time / duration));
 
             time += Time.deltaTime;
             yield return null;
         }
 
-        children.Reverse();
-        waterComponent.Reverse();
         skyboxColors.Reverse();
         yield break;
     }
@@ -63,18 +65,13 @@ public class OceanHandler : MonoBehaviour
                 yield return null;
             }
 
-            handler(ref children, lerpDuration, ref skyboxColors);
-
-            waterComponent[0].peepeepoopoo(duration);
-            //waterComponent[1]._waterSettings = waterComponent[1].WaterState[]
-            waterComponent[1].peepeepoopoo(duration);
-            //WaterStateCondition(1, duration);
+            handler(ref waterComponent, lerpDuration, ref skyboxColors);
         }
     }
 
-    public void BlendOceansHandler(ref List<GameObject> children, float duration, ref List<Color> skyboxColor)
+    public void BlendOceansHandler(ref Water child, float duration, ref List<Color> skyboxColor)
     {
-        StartCoroutine(BlendOceans(children, duration, skyboxColor));
+        StartCoroutine(BlendOceans(child, duration, skyboxColor));
     }
 
     private void Start()
@@ -85,15 +82,11 @@ public class OceanHandler : MonoBehaviour
 
         handler += BlendOceansHandler;
 
-        foreach (Transform child in transform)
+        if (child == null)
         {
-            if (child != null)
-            {
-                children.Add(child.gameObject);
-                waterComponent.Add(child.gameObject.GetComponent<Water>());
-            }
+            child = transform.GetChild(0).gameObject;
+            waterComponent = child.GetComponent<Water>();
         }
-        CurrentChild = children[0];
 
         StartCoroutine(WeatherCycle(cycleDuration));
     }
