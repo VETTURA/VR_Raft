@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Anchor
+  - AttackPoint
+  - Rock
+  - Anchor
+  - InteractableItem
   layers:
   - Default
   - TransparentFX
