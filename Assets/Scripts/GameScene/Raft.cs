@@ -3,13 +3,13 @@ using UnityEngine;
 public class Raft : MonoBehaviour
 {
     [SerializeField]
-    private GameObject stage0;
+    public GameObject stage0;
 
     [SerializeField]
-    private GameObject stage1;
+    public GameObject stage1;
 
     [SerializeField]
-    private GameObject stage2;
+    public GameObject stage2;
 
     private GameObject currentStage;
 
@@ -66,13 +66,13 @@ public class Raft : MonoBehaviour
         var deltaTime = Time.deltaTime;
 
         MoveRaft(deltaTime);
-        Debug.Log("ХП плота: " + RaftHealth);
         HealthCheck();
     }
 
     public void DamageRaft(float damageValue)
     {
         RaftHealth -= damageValue;
+        Debug.Log($"Raft HP: {RaftHealth}%");
     }
 
     private void HealthCheck()

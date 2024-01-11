@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -30,6 +31,12 @@ public class Shark : MonoBehaviour
     private float speed;
 
     [SerializeField]
+    private float immersionSpeed;
+
+    [SerializeField]
+    private float emersionSpeed;
+
+    [SerializeField]
     private Vector3 startPosition;
 
     [SerializeField]
@@ -45,7 +52,7 @@ public class Shark : MonoBehaviour
     private float huntingChance = 0.3f;
 
     [SerializeField]
-    private float uppdateTime = 3.0f;
+    private float updateTime = 3.0f;
 
     [SerializeField]
     private float sharkDamage = 0.01f;
@@ -70,7 +77,10 @@ public class Shark : MonoBehaviour
 
         jaws = GameObject.Find("Jaws");
 
-        attackPoints = GameObject.FindGameObjectsWithTag("AttackPoint").ToList();
+        //attackPoints = GameObject.FindGameObjectsWithTag("AttackPoint").ToList();
+        attackPoints = new List<GameObject>();
+
+
         StartCoroutine(GenerateChance());
     }
 
@@ -96,20 +106,7 @@ public class Shark : MonoBehaviour
         }
     }
     
-    public void CalculateNearestPoint()
-    {
-        float minDistance = 100.0f;
-
-        foreach (var attackPoint in attackPoints)
-        {
-            float distance = Vector3.Distance(jaws.transform.position, attackPoint.transform.position);
-            if (distance < minDistance)
-            {
-                minDistance = distance;
-                nearestPoint = attackPoint;
-            }
-        }
-    }
+    
 
     //Сброс в начальную позицию для охоты
     public void StartingPosition()
@@ -118,11 +115,15 @@ public class Shark : MonoBehaviour
         transform.localRotation = startRotation;
     }
 
+
+    #region SharkStates
     //Если акула находится в "StartingPosition", то с некоторой вероятностью начать охоту
     public void Hunting(float deltaTime)
     {
-        transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(transform.localPosition.x, -0.85f, transform.localPosition.z), speed * deltaTime);
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(transform.localPosition.x, -0.85f, transform.localPosition.z), emersionSpeed * deltaTime);
         transform.RotateAround(raft.transform.localPosition, Vector3.up, angularSpeed * deltaTime);
+
+        CheckAttackPoints();
     }
 
 
@@ -144,9 +145,20 @@ public class Shark : MonoBehaviour
             raft.DamageRaft(sharkDamage);
         }
 
+
+        //refactoring sdelat
+        if (raft.RaftHealth < 60 && raft.stage0.activeSelf == true)
+        {
+            RefreshAttackPoints();
+        }
+        if (raft.RaftHealth < 30 && raft.stage1.activeSelf == true)
+        {
+            RefreshAttackPoints();
+        }
+
     }
 
-    //Ессли игрок нанес акуле урон во время состояния "Attack", то она переходит в состояние "RunAway"
+    //Если игрок нанес акуле урон во время состояния "Attack", то она переходит в состояние "RunAway"
     public void RunAway(float deltaTime)
     {
         if (nearestPoint != null)
@@ -154,13 +166,49 @@ public class Shark : MonoBehaviour
             nearestPoint = null;
         }
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(runAwayPoint - transform.localPosition), rotationSpeed * deltaTime);
-        transform.localPosition = Vector3.MoveTowards(transform.localPosition, runAwayPoint, speed * deltaTime);
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, runAwayPoint, immersionSpeed * deltaTime);
 
         if (transform.localPosition == runAwayPoint)
         {
             sharkState = SharkState.Starting;
         }
     }
+    #endregion
+
+
+    #region AttackPoints
+    public void RefreshAttackPoints()
+    {
+        sharkState = SharkState.RunAway;
+        attackPoints.Clear();
+        nearestPoint = null;
+    }
+
+    public void CheckAttackPoints()
+    {
+        if (attackPoints.Count == 0)
+        {
+            attackPoints = GameObject.FindGameObjectsWithTag("AttackPoint").ToList();
+        }
+    }
+
+    public void CalculateNearestPoint()
+    {
+        float minDistance = 100.0f;
+
+        foreach (var attackPoint in attackPoints)
+        {
+            float distance = Vector3.Distance(jaws.transform.position, attackPoint.transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                nearestPoint = attackPoint;
+            }
+        }
+    }
+
+    #endregion
+
 
     IEnumerator GenerateChance()
     {
@@ -181,7 +229,7 @@ public class Shark : MonoBehaviour
                 sharkState = SharkState.Hunting;
             }
 
-            yield return new WaitForSeconds(uppdateTime);
+            yield return new WaitForSeconds(updateTime);
         }
     }
 
@@ -193,45 +241,3 @@ public class Shark : MonoBehaviour
         }
     }
 }
-
-
-
-/*
-        if (starting && hunting != true && attack != true && runaway != true)
-        {
-            if (nearestPoint != null)
-            {
-                nearestPoint = null;
-            }
-            transform.localPosition = startPosition;
-            transform.localRotation = startRotation;
-        }
-
-        if (hunting && starting == false)
-        {
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(transform.localPosition.x, -0.17f, transform.localPosition.z), speed * Time.deltaTime);
-            transform.RotateAround(raft.transform.localPosition, Vector3.up, angularSpeed * Time.deltaTime);
-        }
-
-        if (attack && hunting != true)
-        {
-            if (nearestPoint == null)
-            {
-                CalculateNearestPoint();
-            }
-            Debug.Log(raft.transform.localPosition);
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, nearestPoint.transform.localPosition, speed * Time.deltaTime);
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(raft.transform.position - transform.position), rotationSpeed * Time.deltaTime);
-        }
-
-        if (runaway && hunting != true)
-        {
-            if (nearestPoint != null)
-            {
-                nearestPoint = null;
-            }
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(runAwayPoint - transform.localPosition), rotationSpeed * Time.deltaTime);
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, runAwayPoint, speed * Time.deltaTime);
-        }
-
-        */
