@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Anchor
   - AttackPoint
   - Rock
   - Anchor
@@ -15,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ocean
   - 
   - 
   - 
