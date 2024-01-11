@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.5294118, g: 0.5254902, b: 0.5176471, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 68517d55baaccbf4f8285f7e39e77d42, type: 2}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -2042,7 +2042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e09b83c9ff90940a11a4f939cc5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raftSpeed: 0.2
+  raftSpeed: 0.3
 --- !u!65 &641812484
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2105,10 +2105,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ocean: {fileID: 2100000, guid: 0cb735e1190c18f41940bf9d08ea77e5, type: 2}
   oceanTexture: {fileID: 8400000, guid: 746208d49c069b14488e167a915d62cb, type: 2}
-  textureScanWidth: 150
-  NormalIntensity: 1
+  textureScanWidth: 2
+  NormalIntensity: 0.5
   initialHeight: 0
-  heightStr: 6
+  heightStr: 1
   yVelocity: 0
 --- !u!1 &650025388
 GameObject:
@@ -3576,7 +3576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e09b83c9ff90940a11a4f939cc5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raftSpeed: 0.09
+  raftSpeed: 0.3
 --- !u!4 &1081815499
 Transform:
   m_ObjectHideFlags: 0
