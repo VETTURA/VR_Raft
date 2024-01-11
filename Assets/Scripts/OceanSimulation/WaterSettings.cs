@@ -59,5 +59,4 @@ public class WaterSettings : ScriptableObject
     [ColorUsageAttribute(false, true)]
     public Color tipColor;
     public float tipAttenuation;
-
 }

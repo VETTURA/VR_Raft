@@ -1,36 +1,41 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using static System.Runtime.InteropServices.Marshal;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class Water : MonoBehaviour
 {
-    public delegate void OnWeatherChanged(WaterSettings targetSettings, float duration);
-    public event OnWeatherChanged weatherChanged;
-    public bool startActive = true;
+    public enum Weather
+    {
+        Calm,
+        Stormy
+    }
+    public Weather weather;
+
+    public delegate void OnWeatherChanged(Weather weather);
+    public static event OnWeatherChanged weatherChanged;
+
+    public void ChangeWeather(Weather weather)
+    {
+        switch (weather)
+        {
+            case Weather.Calm:
+                waterSettings = Resources.Load<WaterSettings>("Assets/Scripts/OceanSimulation/Calm");
+                break;
+            case Weather.Stormy:
+                waterSettings = Resources.Load<WaterSettings>("Assets/Scripts/OceanSimulation/Stormy");
+                break;
+        }
+        GetSettings(waterSettings);
+    }
 
     public Shader waterShader;
 
-    [SerializeField]
-    public WaterSettings _waterSettings;
-    //public WaterSettings WaterConfig
-    //{
-    //    get { return _waterSettings;}
-    //    set { _waterSettings = value; }
-    //}
-
-    [SerializeField]
-    private List<WaterSettings> _waterState;
-    public List<WaterSettings> WaterState
-    {
-        get { return _waterState; }
-        set { _waterState = value; }
-    }
-
-    public float weatherLerpDuration = 3.0f;
+    public WaterSettings waterSettings;
 
     public int planeLength = 10;
     public int quadRes = 10;
@@ -38,13 +43,6 @@ public class Water : MonoBehaviour
     private Camera cam;
 
     private ComputeBuffer waveBuffer;
-
-    private RenderTexture _buoyDataTexture;
-    public RenderTexture BuoyDataTexture
-    {
-        get { return _buoyDataTexture; }
-        set { _buoyDataTexture = value; }
-    }
 
     private Material waterMaterial;
     private Mesh mesh;
@@ -104,7 +102,7 @@ public class Water : MonoBehaviour
         waterMaterial.SetFloat("_FragmentHeight", vertexHeight);
     }
 
-    private void RetrieveInitSettings(WaterSettings waterSettings)
+    private void GetSettings(WaterSettings waterSettings)
     {
         vertexSeedIter = waterSettings.vertexSeedIter;
         vertexFrequency = waterSettings.vertexFrequency;
@@ -225,97 +223,17 @@ public class Water : MonoBehaviour
         renderer.material = waterMaterial;
     }
 
-    IEnumerator WaterSettingsBlend(WaterSettings targetSettings, float duration)
-    {
-        WaterSettings currentSettings = _waterSettings;
-        float time = 0;
-
-        while (time < duration)
-        {
-            vertexSeedIter = Mathf.Lerp(currentSettings.vertexSeedIter, targetSettings.vertexSeedIter, time / duration);
-            vertexFrequency = Mathf.Lerp(currentSettings.vertexFrequency, targetSettings.vertexFrequency, time / duration);
-            vertexFrequencyMult = Mathf.Lerp(currentSettings.vertexFrequencyMult, targetSettings.vertexFrequencyMult, time / duration);
-            vertexAmplitude = Mathf.Lerp(currentSettings.vertexAmplitude, targetSettings.vertexAmplitude, time / duration);
-            vertexAmplitudeMult = Mathf.Lerp(currentSettings.vertexAmplitudeMult, targetSettings.vertexAmplitudeMult, time / duration);
-            vertexInitialSpeed = Mathf.Lerp(currentSettings.vertexInitialSpeed, targetSettings.vertexInitialSpeed, time / duration);
-            vertexSpeedRamp = Mathf.Lerp(currentSettings.vertexSpeedRamp, targetSettings.vertexSpeedRamp, time / duration);
-            vertexDrag = Mathf.Lerp(currentSettings.vertexDrag, targetSettings.vertexDrag, time / duration);
-            vertexHeight = Mathf.Lerp(currentSettings.vertexHeight, targetSettings.vertexHeight, time / duration);
-            vertexMaxPeak = Mathf.Lerp(currentSettings.vertexMaxPeak, targetSettings.vertexMaxPeak, time / duration);
-            vertexPeakOffset = Mathf.Lerp(currentSettings.vertexPeakOffset, targetSettings.vertexPeakOffset, time / duration);
-            
-            fragmentFrequency = Mathf.Lerp(currentSettings.fragmentFrequency, targetSettings.fragmentFrequency, time / duration);
-            fragmentFrequencyMult = Mathf.Lerp(currentSettings.fragmentFrequencyMult, targetSettings.fragmentFrequencyMult, time / duration);
-            fragmentAmplitude = Mathf.Lerp(currentSettings.fragmentAmplitude, targetSettings.fragmentAmplitude, time / duration);
-            fragmentAmplitudeMult = Mathf.Lerp(currentSettings.fragmentAmplitudeMult, targetSettings.fragmentAmplitudeMult, time / duration);
-            fragmentInitialSpeed = Mathf.Lerp(currentSettings.fragmentInitialSpeed, targetSettings.fragmentInitialSpeed, time / duration);
-            fragmentSpeedRamp = Mathf.Lerp(currentSettings.fragmentSpeedRamp, targetSettings.fragmentSpeedRamp, time / duration);
-            fragmentDrag = Mathf.Lerp(currentSettings.fragmentDrag, targetSettings.fragmentDrag, time / duration);
-            fragmentMaxPeak = Mathf.Lerp(currentSettings.fragmentMaxPeak, targetSettings.fragmentMaxPeak, time / duration);
-            fragmentPeakOffset = Mathf.Lerp(currentSettings.fragmentPeakOffset, targetSettings.fragmentPeakOffset, time / duration);
-
-            shininess = Mathf.Lerp(currentSettings.shininess, targetSettings.shininess, time / duration);
-            specularNormalStrength = Mathf.Lerp(currentSettings.specularNormalStrength, targetSettings.specularNormalStrength, time / duration);
-            //useTextureForFresnel = waterSettings.useTextureForFresnel;
-            environmentTexture = targetSettings.environmentTexture;
-            fresnelBias = Mathf.Lerp(currentSettings.fresnelBias, targetSettings.fresnelBias, time / duration);
-            fresnelStrength = Mathf.Lerp(currentSettings.fresnelStrength, targetSettings.fresnelStrength, time / duration);
-            fresnelShininess = Mathf.Lerp(currentSettings.fresnelShininess, targetSettings.fresnelShininess, time / duration);
-            fresnelNormalStrength = Mathf.Lerp(currentSettings.fresnelNormalStrength, targetSettings.fresnelNormalStrength, time / duration);
-            tipAttenuation = Mathf.Lerp(currentSettings.tipAttenuation, targetSettings.tipAttenuation, time / duration);
-
-            ambient = Color.Lerp(currentSettings.ambient, targetSettings.ambient, time / duration);
-            diffuseReflectance = Color.Lerp(currentSettings.diffuseReflectance, targetSettings.diffuseReflectance, time / duration);
-            specularReflectance = Color.Lerp(currentSettings.specularReflectance, targetSettings.specularReflectance, time / duration);
-            fresnelColor = Color.Lerp(currentSettings.fresnelColor, targetSettings.fresnelColor, time / duration);
-            tipColor = Color.Lerp(currentSettings.tipColor, targetSettings.tipColor, time / duration);
-
-            time += Time.deltaTime;
-            yield return null;
-        }
-
-        _waterSettings = targetSettings;
-        //WaterState.Reverse();
-        //RenderSettings.skybox.SetColor("_SkyTint", skyboxColor);
-        yield break;
-    }
-
-    public void WaterSettingsBlendHandler(WaterSettings targetSettings, float duration)
-    {
-        StartCoroutine(WaterSettingsBlend(targetSettings, duration));
-    }
-
-    private RenderTexture CreateRenderTexture(int width, int height, RenderTextureFormat format, bool useMips)
-    {
-        RenderTexture rt = new RenderTexture(width, height, 0, format, RenderTextureReadWrite.Linear);
-        rt.dimension = UnityEngine.Rendering.TextureDimension.Tex2DArray;
-        rt.filterMode = FilterMode.Bilinear;
-        rt.wrapMode = TextureWrapMode.Repeat;
-        rt.enableRandomWrite = true;
-        rt.useMipMap = useMips;
-        rt.autoGenerateMips = false;
-        rt.anisoLevel = 16;
-        rt.Create();
-
-        return rt;
-    }
-
     private void Start()
     {
-        //if (startActive) { gameObject.SetActive(true); }
-        //if (!startActive) { gameObject.SetActive(false); }
+        weatherChanged += ChangeWeather;
+    }
 
-        BuoyDataTexture = CreateRenderTexture(1024, 1024, RenderTextureFormat.RHalf, false);
-
-        WaterState.Add(Resources.Load<WaterSettings>("OceanStates/Calm"));
-        WaterState.Add(Resources.Load<WaterSettings>("OceanStates/Stormy"));
-
+    void OnEnable()
+    {
         CreateWaterPlane();
         CreateMaterial();
-        RetrieveInitSettings(_waterSettings);
+        GetSettings(waterSettings);
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-
-        weatherChanged += WaterSettingsBlendHandler;
     }
 
     void Update()
@@ -368,6 +286,7 @@ public class Water : MonoBehaviour
 
         waterMaterial.SetFloat("_NormalStrength", normalStrength);
         waterMaterial.SetBuffer("_Waves", waveBuffer);
+        return; 
     }
 
     void OnDisable()
