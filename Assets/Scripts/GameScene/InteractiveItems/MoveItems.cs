@@ -48,14 +48,14 @@ public class MoveItems : MonoBehaviour
     [SerializeField]
     private float emergeDistance = 3.0f;
 
-    private Raft raft;
+    private RaftController raft;
     private Water water;
 
     private Vector3 targetPosition;
 
     void Start()
     {
-        raft = FindFirstObjectByType<Raft>();
+        raft = FindFirstObjectByType<RaftController>();
         water = FindAnyObjectByType<Water>();
 
         CalculateTargetPosition();

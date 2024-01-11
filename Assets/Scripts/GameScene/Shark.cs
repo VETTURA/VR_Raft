@@ -59,7 +59,7 @@ public class Shark : MonoBehaviour
 
     private List<GameObject> attackPoints;
 
-    private Raft raft;
+    private RaftController raft;
 
     private GameObject jaws;
 
@@ -73,7 +73,7 @@ public class Shark : MonoBehaviour
         
         runAwayPoint = new(0, -5.25f, 0);
 
-        raft = FindObjectOfType<Raft>();
+        raft = FindObjectOfType<RaftController>();
 
         jaws = GameObject.Find("Jaws");
 
@@ -105,8 +105,6 @@ public class Shark : MonoBehaviour
                 break;
         }
     }
-    
-    
 
     //—брос в начальную позицию дл€ охоты
     public void StartingPosition()
@@ -115,8 +113,8 @@ public class Shark : MonoBehaviour
         transform.localRotation = startRotation;
     }
 
-
     #region SharkStates
+
     //≈сли акула находитс€ в "StartingPosition", то с некоторой веро€тностью начать охоту
     public void Hunting(float deltaTime)
     {
@@ -208,7 +206,6 @@ public class Shark : MonoBehaviour
     }
 
     #endregion
-
 
     IEnumerator GenerateChance()
     {

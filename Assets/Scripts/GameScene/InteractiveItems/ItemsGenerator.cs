@@ -7,7 +7,7 @@ public class ItemsGenerator : MonoBehaviour
 {
     private System.Random rnd = new();
 
-    private Raft raft;
+    private RaftController raft;
     private Water water;
 
     private struct ItemPrefab
@@ -48,7 +48,7 @@ public class ItemsGenerator : MonoBehaviour
 
     void Start()
     {
-        raft = FindFirstObjectByType<Raft>();
+        raft = FindFirstObjectByType<RaftController>();
         water = FindFirstObjectByType<Water>();
         
         GetPrefabs();

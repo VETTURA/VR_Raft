@@ -3180,15 +3180,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 522604184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9e09b83c9ff90940a11a4f939cc5c30, type: 3}
+  m_Script: {fileID: 11500000, guid: f24fdfa6defdfa54ab1c8a7adf81f0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stage0: {fileID: 1427577277}
   stage1: {fileID: 1697675267}
   stage2: {fileID: 1021372158}
   _raftHealth: 100
-  _raftSpeed: 1
-  _isMoving: 0
+  _raftSpeed: 0.1
+  _isMoving: 1
 --- !u!1001 &546701200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3841,9 +3841,11 @@ MonoBehaviour:
   stage0: {fileID: 0}
   stage1: {fileID: 0}
   stage2: {fileID: 0}
+  currentStage: {fileID: 0}
   _raftHealth: 100
   _raftSpeed: 1
   _isMoving: 0
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &641812484
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5093,6 +5095,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cfd2c632c2b0f4f4ca582a5ad9f75d7e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1021372170}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cfd2c632c2b0f4f4ca582a5ad9f75d7e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1021372171}
     - targetCorrespondingSourceObject: {fileID: 5392398322951045289, guid: cfd2c632c2b0f4f4ca582a5ad9f75d7e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1021372162}
@@ -5330,6 +5335,18 @@ MonoBehaviour:
   initialHeight: 0
   heightStr: 6
   yVelocity: 0
+--- !u!114 &1021372171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021372158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6fdd12ab2eb1b4f9989cf7bfaf23e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1024946503
 GameObject:
   m_ObjectHideFlags: 0
@@ -5746,6 +5763,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a4c8b25c59e8ad041aacb3ab2657a3cd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1697675272}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a4c8b25c59e8ad041aacb3ab2657a3cd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1697675273}
     - targetCorrespondingSourceObject: {fileID: 5392398322951045289, guid: a4c8b25c59e8ad041aacb3ab2657a3cd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1317860921}
@@ -6919,6 +6939,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1618763104}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1681544972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427577277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6fdd12ab2eb1b4f9989cf7bfaf23e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1697675267 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a4c8b25c59e8ad041aacb3ab2657a3cd, type: 3}
@@ -7033,6 +7065,18 @@ MonoBehaviour:
   initialHeight: 0
   heightStr: 6
   yVelocity: 0
+--- !u!114 &1697675273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697675267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6fdd12ab2eb1b4f9989cf7bfaf23e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1731298970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8444,9 +8488,11 @@ MonoBehaviour:
   stage0: {fileID: 0}
   stage1: {fileID: 0}
   stage2: {fileID: 0}
+  currentStage: {fileID: 0}
   _raftHealth: 100
   _raftSpeed: 0.1
   _isMoving: 1
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &1912454898
 Transform:
   m_ObjectHideFlags: 0
@@ -9098,6 +9144,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: db8950ff1bdaa9f4580fc40b1059f6de, type: 3}
       insertIndex: -1
       addedObject: {fileID: 308222870}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: db8950ff1bdaa9f4580fc40b1059f6de, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1681544972}
     - targetCorrespondingSourceObject: {fileID: 5392398322951045289, guid: db8950ff1bdaa9f4580fc40b1059f6de, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2104506232}
