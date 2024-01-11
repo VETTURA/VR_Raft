@@ -209,7 +209,7 @@ Shader "Unlit/UnlitOcean"
 
 				float h = 0.0f;
 				float2 n = 0.0f;
-				for (int wi = 3; wi < _VertexWaveCount; ++wi) {
+				for (int wi = 0; wi < _VertexWaveCount; ++wi) {
 					float2 d = normalize(float2(cos(seed), sin(seed)));
 
 					float x = dot(d, p.xz) * f + _Time.y * speed;
