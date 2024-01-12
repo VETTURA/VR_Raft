@@ -60,18 +60,18 @@ public class ItemsGenerator : MonoBehaviour
     {
         itemsPrefab = new()
         {
-            new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Paddle"), 0.1f),
-            new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Net"), 0.2f),
-            new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Stick"), 0.8f),
-            new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Fishes/Fish_1"), 0.7f),
-            new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Fishes/Fish_2"), 0.7f),
+            new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Paddle"), 1.0f),
+            //new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Net"), 0.2f),
+            //new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Stick"), 0.8f),
+            //new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Fishes/Fish_1"), 0.7f),
+            //new ItemPrefab((GameObject)Resources.Load("Prefabs/Level/InteractiveItems/Fishes/Fish_2"), 0.7f),
         };
     }
 
     private void SpawnItems()
     {
         var zPosition = raft.transform.position.z - distanceSpawn;
-        var yPosition = water.transform.position.y;
+        var yPosition = water.transform.position.y + 0.2f;
         var xPosition = (float)(rnd.NextDouble() * (maxXSpawnPosition - minXSpawnPosition) + minXSpawnPosition);
 
         var probability = (float)rnd.NextDouble();

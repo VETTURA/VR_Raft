@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class ItemController : MonoBehaviour
 {
     [SerializeField]
-    private float immersionDistance = 0.5f;
+    private float immersionDistance = 0.2f;
 
     private MoveItems moveItems;
     private XRGrabInteractable interactable;

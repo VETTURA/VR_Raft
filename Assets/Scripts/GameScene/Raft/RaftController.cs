@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RaftController : MonoBehaviour
 {
@@ -27,7 +29,6 @@ public class RaftController : MonoBehaviour
         }
     }
 
-    //TODO переписать как только будет готова физическая вода
     [SerializeField]
     private float _raftSpeed = 0.1f;
 
@@ -97,6 +98,21 @@ public class RaftController : MonoBehaviour
         newStage.SetActive(true);
 
         player.transform.parent.SetParent(newStage.transform);
+
+        List<GameObject> interactObjects = new();
+
+        foreach(Transform child in oldStage.transform)
+        {
+            if(child.tag == RaftCollision.INTERACTABLEITEMTAG)
+            {
+                interactObjects.Add(child.gameObject);
+            }
+        }
+
+        foreach (var elem in interactObjects)
+        {
+            elem.transform.SetParent(newStage.transform);
+        }
 
         oldStage.SetActive(false);
     }

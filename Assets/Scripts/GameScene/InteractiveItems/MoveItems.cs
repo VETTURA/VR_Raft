@@ -71,8 +71,8 @@ public class MoveItems : MonoBehaviour
     public void CalculateTargetPosition()
     {
         targetPosition = UpMove ? 
-            new(transform.position.x, water.transform.position.y, transform.position.z + emergeDistance) : 
-            new(transform.position.x, water.transform.position.y, transform.position.z + destroyDistance);
+            new(transform.position.x, water.transform.position.y + 0.2f, transform.position.z + emergeDistance) : 
+            new(transform.position.x, water.transform.position.y + 0.2f, transform.position.z + destroyDistance);
     }
 
     public void ResetRotation()
