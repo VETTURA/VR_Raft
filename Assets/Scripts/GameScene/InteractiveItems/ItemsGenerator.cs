@@ -26,25 +26,25 @@ public class ItemsGenerator : MonoBehaviour
 
     //Генерит ошибки
     //[SerializeField]
-    private float startTime = 0.0f;
+    public float startTime = 0.0f;
 
     //Генерит ошибки
     //[SerializeField]
-    private float repeatRate = 2.0f;
+    public float repeatRate = 2.0f;
 
     private const string NAMEREPEATFUNCTION = "SpawnItems";
 
     //Генерит ошибки
     //[SerializeField]
-    private float minXSpawnPosition = -10.0f;
+    public float minXSpawnPosition = -10.0f;
 
     //Генерит ошибки
     //[SerializeField]
-    private float maxXSpawnPosition = 10.0f;
+    public float maxXSpawnPosition = 10.0f;
 
     //Генерит ошибки
     //[SerializeField]
-    private float distanceSpawn = 30.0f;
+    public float distanceSpawn = 30.0f;
 
     void Start()
     {

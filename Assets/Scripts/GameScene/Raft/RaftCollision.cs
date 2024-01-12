@@ -42,7 +42,7 @@ public class RaftCollision: MonoBehaviour
     {
         if (other.name == player.name)
         {
-            player.transform.parent.transform.SetParent(null, true);
+            player.transform.parent.SetParent(null, true);
         }
 
         if (other.tag == INTERACTABLEITEMTAG)
