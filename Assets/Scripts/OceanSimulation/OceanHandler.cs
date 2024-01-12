@@ -27,6 +27,9 @@ public class OceanHandler : MonoBehaviour
     public float lerpDuration = 3.0f;
     public float cycleDuration = 10.0f;
 
+    private System.Random random = new();
+    public float weatherChangeChance = 0.3f;
+
     IEnumerator BlendOceans(Water waterComponent, float duration, List<Color> skyboxColor)
     {
         Color currentSkyboxColor = RenderSettings.skybox.GetColor("_SkyTint");
@@ -61,11 +64,19 @@ public class OceanHandler : MonoBehaviour
             float _time = 0;
             while (_time < duration)
             {
+                
                 _time += Time.deltaTime;
                 yield return null;
             }
+            Debug.Log("Alea iacta est");
 
-            handler(ref waterComponent, lerpDuration, ref skyboxColors);
+            double currentChance = random.NextDouble();
+
+            if (currentChance < weatherChangeChance)
+            {
+                Debug.Log("-------------------Generated weather chance: " + currentChance);
+                handler(ref waterComponent, lerpDuration, ref skyboxColors);
+            }
         }
     }
 

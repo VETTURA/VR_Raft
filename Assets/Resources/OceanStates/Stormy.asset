@@ -29,14 +29,14 @@ MonoBehaviour:
   fragmentAmplitudeMult: 0.82
   fragmentInitialSpeed: 2
   fragmentSpeedRamp: 1.07
-  fragmentDrag: 2
+  fragmentDrag: 1.8
   fragmentMaxPeak: 1
   fragmentPeakOffset: 0.6
   normalStrength: 0.16
   ambient: {r: 0.043137256, g: 0.050980393, b: 0.07058824, a: 1}
   diffuseReflectance: {r: 0.10980392, g: 0.16470589, b: 0.22745098, a: 1}
   specularReflectance: {r: 0.22352941, g: 0.3254902, b: 0.44705883, a: 1}
-  shininess: 5.09
+  shininess: 2
   specularNormalStrength: 2.66
   fresnelColor: {r: 0.043137256, g: 0.050980393, b: 0.07058824, a: 0}
   useTextureForFresnel: 1

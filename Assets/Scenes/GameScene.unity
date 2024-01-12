@@ -9316,7 +9316,8 @@ MonoBehaviour:
   _currentChild: {fileID: 0}
   skyboxColors: []
   lerpDuration: 3
-  cycleDuration: 10
+  cycleDuration: 47
+  weatherChangeChance: 0.3
 --- !u!1 &1912454896
 GameObject:
   m_ObjectHideFlags: 0
