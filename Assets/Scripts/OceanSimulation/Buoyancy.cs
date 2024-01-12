@@ -82,7 +82,7 @@ public class Buoyancy : MonoBehaviour
         initialHeight = transform.localPosition.y;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         GetOceanPixels();
 
@@ -91,7 +91,7 @@ public class Buoyancy : MonoBehaviour
         {
             var fromLook = Quaternion.LookRotation(Vector3.forward - Vector3.Project(Vector3.forward, currNormal), currNormal);
             var toLook = Quaternion.LookRotation(Vector3.forward - Vector3.Project(Vector3.forward, targetNormal), targetNormal);
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.RotateTowards(fromLook, toLook, 90f), Time.deltaTime * NormalLerpSpeed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.RotateTowards(fromLook, toLook, 90f), Time.fixedDeltaTime * NormalLerpSpeed);
         }
 
         transform.localPosition = new Vector3(transform.localPosition.x, initialHeight + avgHeight * heightStr, transform.localPosition.z);

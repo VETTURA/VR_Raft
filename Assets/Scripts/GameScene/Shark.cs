@@ -85,9 +85,9 @@ public class Shark : MonoBehaviour
     }
 
    
-    void Update()
+    void FixedUpdate()
     {
-        var deltaTime = Time.deltaTime;
+        var deltaTime = Time.fixedDeltaTime;
 
         switch (sharkState)
         {

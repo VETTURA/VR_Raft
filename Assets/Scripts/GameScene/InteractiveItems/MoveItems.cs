@@ -61,9 +61,9 @@ public class MoveItems : MonoBehaviour
         CalculateTargetPosition();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        var deltaTime = Time.deltaTime;
+        var deltaTime = Time.fixedDeltaTime;
 
         MoveItem(deltaTime);
     }

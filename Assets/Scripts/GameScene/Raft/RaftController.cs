@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class RaftController : MonoBehaviour
@@ -12,6 +13,8 @@ public class RaftController : MonoBehaviour
     public GameObject stage2;
 
     private GameObject currentStage;
+
+    private Player player;
 
     [SerializeField]
     private float _raftHealth = 100.0f;
@@ -53,12 +56,16 @@ public class RaftController : MonoBehaviour
 
     void Start()
     {
-        targetPosition = new(transform.position.x, transform.position.y, transform.position.z - 1900);
+        player = FindAnyObjectByType<Player>();
+
+        currentStage = stage0;
+
+        targetPosition = new(transform.position.x, transform.position.y, transform.position.z - 1996);
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        var deltaTime = Time.deltaTime;
+        var deltaTime = Time.fixedDeltaTime;
 
         MoveRaft(deltaTime);
         HealthCheck();
@@ -72,17 +79,26 @@ public class RaftController : MonoBehaviour
 
     private void HealthCheck()
     {
-        if (RaftHealth < 60)
+        if (RaftHealth < 60 && currentStage.name == stage0.name)
         {
-            stage0.SetActive(false);
-            stage1.SetActive(true);
+            ChangeState(stage0, stage1);
         }
 
-        if (RaftHealth < 30)
+        if (RaftHealth < 30 && currentStage.name == stage1.name)
         {
-            stage1.SetActive(false);
-            stage2.SetActive(true);
+            ChangeState(stage1, stage2);
         }
+    }
+
+    public void ChangeState(GameObject oldStage, GameObject newStage)
+    {
+        currentStage = newStage;
+
+        newStage.SetActive(true);
+
+        player.transform.parent.SetParent(newStage.transform);
+
+        oldStage.SetActive(false);
     }
 
     private void MoveRaft(float deltaTime)
