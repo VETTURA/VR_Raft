@@ -992,6 +992,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5735884232154888169, guid: 922115d5a813e384e988f3d9d4533ba2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9190058752668736279, guid: 922115d5a813e384e988f3d9d4533ba2, type: 3}
       propertyPath: m_Name
       value: Paddle
@@ -1587,7 +1591,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133634633}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 479930c05ae53f14b945f4f63e40fc24, type: 3}
   m_Name: 
@@ -4222,6 +4226,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 734586029486892081, guid: e3caab83819a23140863e26d30ac3aa6, type: 3}
       propertyPath: _isMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5497639757190137868, guid: e3caab83819a23140863e26d30ac3aa6, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6035931042728566730, guid: e3caab83819a23140863e26d30ac3aa6, type: 3}
@@ -8955,6 +8963,10 @@ PrefabInstance:
       propertyPath: _isMove
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6565495239718252540, guid: f3f5690f073138d4e85658fcfb2b83fb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9208,10 +9220,10 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
   runAwayPoint: {x: 0, y: -4.5, z: 0}
-  attackChance: 0
+  attackChance: 0.2
   huntingChance: 1
   updateTime: 10
-  sharkDamage: 0.5
+  sharkDamage: 50
 --- !u!1 &1823090283
 GameObject:
   m_ObjectHideFlags: 0
@@ -9369,8 +9381,8 @@ MonoBehaviour:
   stage1: {fileID: 1697675267}
   stage2: {fileID: 1021372158}
   _raftHealth: 100
-  _raftSpeed: 0.2
-  _isMoving: 0
+  _raftSpeed: 1
+  _isMoving: 1
 --- !u!4 &1975826965 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9014170783705847996, guid: 895f6f3c2d334633b5800312285058d2, type: 3}

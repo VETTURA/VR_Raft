@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 4788228079435898593}
   - component: {fileID: 346445577710222535}
   - component: {fileID: 4019868777589151867}
+  - component: {fileID: 5735884232154888169}
   m_Layer: 0
   m_Name: Paddle
   m_TagString: InteractableItem
@@ -478,3 +479,22 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &5735884232154888169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9190058752668736279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25fbf10c5b852dc4fa54e076ed1f0d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ocean: {fileID: 2100000, guid: 0cb735e1190c18f41940bf9d08ea77e5, type: 2}
+  oceanTexture: {fileID: 8400000, guid: 746208d49c069b14488e167a915d62cb, type: 2}
+  textureScanWidth: 60
+  NormalIntensity: 2
+  initialHeight: 0
+  heightStr: 20
+  yVelocity: 0
