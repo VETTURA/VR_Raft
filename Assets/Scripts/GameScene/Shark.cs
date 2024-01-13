@@ -236,5 +236,10 @@ public class Shark : MonoBehaviour
         {
             sharkState = SharkState.RunAway;
         }
+
+        if(other.tag == "InteractableItem")
+        {
+            sharkState = SharkState.RunAway;
+        }
     }
 }

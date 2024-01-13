@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: -742834211174596511}
   - component: {fileID: 6190141123140869279}
   - component: {fileID: 6615705775110405269}
+  - component: {fileID: -6658088254506386961}
+  - component: {fileID: -3664906669718898827}
   m_Layer: 0
   m_Name: Fish_2
   m_TagString: InteractableItem
@@ -241,6 +243,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   immersionDistance: 0.2
+--- !u!114 &-6658088254506386961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3619810517737321184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb5a2f9c5c6be0143907f3345f1305a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restoreAmount: 50
+--- !u!65 &-3664906669718898827
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3619810517737321184}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.01, y: 0.04, z: 0.1}
+  m_Center: {x: 0, y: 0.02, z: -0.02}
 --- !u!1001 &7687444659299642424
 PrefabInstance:
   m_ObjectHideFlags: 0
