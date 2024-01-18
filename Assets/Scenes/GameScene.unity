@@ -992,6 +992,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5735884232154888169, guid: 922115d5a813e384e988f3d9d4533ba2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9190058752668736279, guid: 922115d5a813e384e988f3d9d4533ba2, type: 3}
       propertyPath: m_Name
       value: Paddle
@@ -1591,7 +1595,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133634633}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 479930c05ae53f14b945f4f63e40fc24, type: 3}
   m_Name: 
@@ -2859,6 +2863,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 005b8712e7911f747b2767aa72622c10, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1816440785}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 005b8712e7911f747b2767aa72622c10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1816440788}
   m_SourcePrefab: {fileID: 100100000, guid: 005b8712e7911f747b2767aa72622c10, type: 3}
 --- !u!1 &491509901 stripped
 GameObject:
@@ -4291,7 +4298,7 @@ Transform:
   m_GameObject: {fileID: 842962513}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.73, z: -0.48529884}
+  m_LocalPosition: {x: 0, y: -0.69, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7481,13 +7488,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47990d481976c29418d3f21520727729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 100
+  _health: 10
   healingValue: 0.5
   _hunger: 100
   appetiteValue: 0
   hungerDamageValue: 0
   _damage: 0
   damageVision: {fileID: 2909012230914446577}
+--- !u!65 &1534326844
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534326827}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3, y: 0.2, z: 0.3}
+  m_Center: {x: 0, y: 1.3, z: 0.1}
 --- !u!1 &1557817824
 GameObject:
   m_ObjectHideFlags: 0
@@ -8652,6 +8680,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7696548424635294048, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1534326841}
+    - targetCorrespondingSourceObject: {fileID: 7696548424635294048, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1534326844}
     - targetCorrespondingSourceObject: {fileID: 9014170783809206332, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1731298975}
@@ -8851,6 +8882,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4546367112717629769, guid: f3f5690f073138d4e85658fcfb2b83fb, type: 3}
       propertyPath: _isMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6565495239718252540, guid: f3f5690f073138d4e85658fcfb2b83fb, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -9107,10 +9142,33 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
   runAwayPoint: {x: 0, y: -4.5, z: 0}
-  attackChance: 0
+  attackChance: 0.2
   huntingChance: 1
   updateTime: 10
-  sharkDamage: 0.5
+  sharkDamage: 10
+--- !u!136 &1816440788
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408881029}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.43
+  m_Height: 5.34
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.08, z: -0.5301086}
 --- !u!1 &1823090283
 GameObject:
   m_ObjectHideFlags: 0
@@ -9268,8 +9326,8 @@ MonoBehaviour:
   stage1: {fileID: 1697675267}
   stage2: {fileID: 1021372158}
   _raftHealth: 100
-  _raftSpeed: 0.2
-  _isMoving: 0
+  _raftSpeed: 1
+  _isMoving: 1
 --- !u!4 &1975826965 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9014170783705847996, guid: 895f6f3c2d334633b5800312285058d2, type: 3}

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: -742834211174596511}
   - component: {fileID: 6190141123140869279}
   - component: {fileID: 6615705775110405269}
+  - component: {fileID: -6658088254506386961}
+  - component: {fileID: -3664906669718898827}
   m_Layer: 0
   m_Name: Fish_2
   m_TagString: InteractableItemCollider
