@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -347283083694126023}
   m_Layer: 0
   m_Name: Fish_1
-  m_TagString: InteractableItem
+  m_TagString: InteractableItemCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037615b48af4c5146ba77ef41ac494a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immersionDistance: 0.2
+  immersionDistance: 0.1
 --- !u!1001 &1186462230167519607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -311,7 +311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 50146fc643e3d5f4788138abc4d99042, type: 3}
       propertyPath: m_TagString
-      value: InteractableItem
+      value: InteractableItemCollider
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

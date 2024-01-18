@@ -8,6 +8,7 @@ public class RaftCollision: MonoBehaviour
     private Player player;
 
     public const string INTERACTABLEITEMTAG = "InteractableItem";
+    public const string INTERACTABLEITEMTAGCOLLIDER = "InteractableItemCollider";
     public const string ROCKTAG = "Rock";
 
     void Start()
@@ -27,9 +28,12 @@ public class RaftCollision: MonoBehaviour
             player.transform.parent.SetParent(gameObject.transform, true);
         }
 
-        if (other.tag == INTERACTABLEITEMTAG)
+        if (other.tag == INTERACTABLEITEMTAGCOLLIDER)
         {
-            other.transform.parent.SetParent(gameObject.transform, true);
+            if(other.transform.parent.GetComponent<ItemController>().InNat == false)
+            {
+                other.transform.parent.SetParent(gameObject.transform, true);
+            }
         }
 
         if (other.tag == ROCKTAG)
@@ -45,9 +49,12 @@ public class RaftCollision: MonoBehaviour
             player.transform.parent.SetParent(null, true);
         }
 
-        if (other.tag == INTERACTABLEITEMTAG)
+        if (other.tag == INTERACTABLEITEMTAGCOLLIDER)
         {
-            other.transform.parent.SetParent(null, true);
+            if(other.gameObject.transform.parent.GetComponent<ItemController>().InNat == false)
+            {
+                other.transform.parent.SetParent(null, true);
+            }
         }
     }
 }

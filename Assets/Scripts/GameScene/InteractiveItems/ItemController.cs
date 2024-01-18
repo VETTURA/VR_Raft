@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class ItemController : MonoBehaviour
 {
     [SerializeField]
-    private float immersionDistance = 0.2f;
+    private float immersionDistance = 0.1f;
 
     private MoveItems moveItems;
     private XRGrabInteractable interactable;
@@ -39,6 +39,7 @@ public class ItemController : MonoBehaviour
         CheckSelectedItem();
         CheckWaterTouch();
         CheckHitNet();
+        CheckInNet();
     }
 
     private void CheckHitNet()
@@ -63,7 +64,7 @@ public class ItemController : MonoBehaviour
             rb.isKinematic = false;
             rb.useGravity = true;
 
-            gameObject.transform.SetParent(null);
+            //gameObject.transform.SetParent(null);
         }
     }
 
@@ -84,6 +85,15 @@ public class ItemController : MonoBehaviour
                 rb.isKinematic = true;
                 rb.useGravity = false;
             }
+        }
+    }
+
+    private void CheckInNet()
+    {
+        if (InNat)
+        {
+            moveItems.UpMove = false;
+            moveItems.IsMove = false;
         }
     }
 }

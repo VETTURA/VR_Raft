@@ -6,7 +6,7 @@ public class NetController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == RaftCollision.INTERACTABLEITEMTAG)
+        if(other.tag == RaftCollision.INTERACTABLEITEMTAGCOLLIDER)
         {
             other.gameObject.transform.parent.SetParent(gameObject.transform);
 
