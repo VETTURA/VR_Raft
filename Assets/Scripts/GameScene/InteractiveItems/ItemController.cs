@@ -9,8 +9,8 @@ public class ItemController : MonoBehaviour
     [SerializeField]
     private float immersionDistance = 0.1f;
 
+    public XRGrabInteractable interactable;
     private MoveItems moveItems;
-    private XRGrabInteractable interactable;
     private Rigidbody rb;
 
     private bool _inNat = false;

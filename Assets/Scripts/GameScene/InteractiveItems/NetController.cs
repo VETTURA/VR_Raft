@@ -8,11 +8,16 @@ public class NetController : MonoBehaviour
     {
         if(other.tag == RaftCollision.INTERACTABLEITEMTAGCOLLIDER)
         {
-            other.gameObject.transform.parent.SetParent(gameObject.transform);
+            ItemController itemController = other.gameObject.transform.parent.GetComponent<ItemController>();
 
-            other.gameObject.transform.parent.GetComponent<ItemController>().InNat = true;
+            if (!itemController.interactable.isSelected)
+            {
+                other.gameObject.transform.parent.SetParent(gameObject.transform);
 
-            other.gameObject.transform.position = centerNet.transform.position;
+                itemController.InNat = true;
+
+                other.gameObject.transform.position = centerNet.transform.position;
+            }
         }
     }
 }
