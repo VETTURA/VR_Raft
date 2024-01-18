@@ -58,7 +58,6 @@ public class Player : MonoBehaviour
 
     public const string FEATHERINGEFFECT = "_FeatheringEffect";
     public const string VIGNETTECOLOR = "_VignetteColor";
-    public const string INTERACTABLEITEM = "InteractableItem";
 
     public const float MINFEATHERINGEFFECT = 0.08f;
     public const float MAXFEATHERINGEFFECT = 0.3f;
@@ -109,7 +108,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Eating(float foodValue)
+    public void Eating(float foodValue)
     {
         Hunger += foodValue;
     }
@@ -137,13 +136,4 @@ public class Player : MonoBehaviour
         damageVisionMaterial.SetColor(VIGNETTECOLOR, new(rVignetteColor, 0, 0, alphaVignetteColor));
     }
     #endregion
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == INTERACTABLEITEM && other.gameObject.transform.parent.GetComponent<FoodController>())
-        {
-            Health += other.gameObject.GetComponent<FoodController>().restoreAmount;
-            Destroy(other.gameObject);
-        }
-    }
 }

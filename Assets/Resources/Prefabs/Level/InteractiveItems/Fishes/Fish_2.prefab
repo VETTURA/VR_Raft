@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -742834211174596511}
   - component: {fileID: 6190141123140869279}
   - component: {fileID: 6615705775110405269}
+  - component: {fileID: 7108264293933458994}
   m_Layer: 0
   m_Name: Fish_2
   m_TagString: InteractableItem
@@ -241,6 +242,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   immersionDistance: 0.1
+--- !u!114 &7108264293933458994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3619810517737321184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d868ad289c675644aca71dc662aeed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _foodValue: 30
 --- !u!1001 &7687444659299642424
 PrefabInstance:
   m_ObjectHideFlags: 0
