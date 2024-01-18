@@ -230,14 +230,18 @@ public class Shark : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Rock")
+        if(other.tag == RaftCollision.ROCKTAG)
         {
             sharkState = SharkState.RunAway;
         }
 
-        if(other.tag == "InteractableItem")
+        if(other.tag == RaftCollision.INTERACTABLEITEMTAGCOLLIDER)
         {
-            sharkState = SharkState.RunAway;
+            MoveItems moveItem = other.gameObject.transform.parent.GetComponent<MoveItems>();
+            if (!moveItem.IsMove) 
+            {
+                sharkState = SharkState.RunAway;
+            }
         }
     }
 }
