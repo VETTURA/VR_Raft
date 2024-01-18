@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6429202174646315200}
   m_Layer: 0
   m_Name: net LOD1(Clone)
-  m_TagString: InteractableItem
+  m_TagString: InteractableItemCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,9 +25,9 @@ Transform:
   m_GameObject: {fileID: 221593415932010833}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3078186066280461333}
   - {fileID: 2805648042508263466}
@@ -48,10 +48,11 @@ GameObject:
   - component: {fileID: 734586029486892081}
   - component: {fileID: 7404765156708424494}
   - component: {fileID: 6235841212869151769}
-  - component: {fileID: 5497639757190137868}
+  - component: {fileID: 3105099682956270002}
+  - component: {fileID: 1244010281351099890}
   m_Layer: 0
   m_Name: Net
-  m_TagString: InteractableItem
+  m_TagString: InteractableItemCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,11 +67,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1331901963317126407}
   - {fileID: 6429202174646315200}
+  - {fileID: 7943812064724526573}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &7728101451899682059
@@ -156,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037615b48af4c5146ba77ef41ac494a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immersionDistance: 0.2
+  immersionDistance: 0.1
 --- !u!114 &6235841212869151769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,25 +307,40 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &5497639757190137868
+--- !u!65 &3105099682956270002
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673868604119587240}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.41347325, y: 0.043018818, z: 0.42713213}
+  m_Center: {x: -0.5466466, y: 0, z: -0.0038940907}
+--- !u!114 &1244010281351099890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673868604119587240}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25fbf10c5b852dc4fa54e076ed1f0d56, type: 3}
+  m_Script: {fileID: 11500000, guid: c3cbdfedd01141b4abe95ab40e3b4b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ocean: {fileID: 2100000, guid: 0cb735e1190c18f41940bf9d08ea77e5, type: 2}
-  oceanTexture: {fileID: 8400000, guid: 746208d49c069b14488e167a915d62cb, type: 2}
-  textureScanWidth: 60
-  NormalIntensity: 2
-  initialHeight: 0
-  heightStr: 20
-  yVelocity: 0
+  centerNet: {fileID: 4681482198415580978}
 --- !u!1 &1716453970573851312
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +673,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4681482198415580978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7943812064724526573}
+  m_Layer: 0
+  m_Name: CenterNet
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7943812064724526573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4681482198415580978}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.556, y: -0.096, z: -0.006}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6035931042728566730}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5428926192951561637
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +717,7 @@ GameObject:
   - component: {fileID: 6001789706794646867}
   m_Layer: 0
   m_Name: net LOD0(Clone)
-  m_TagString: InteractableItem
+  m_TagString: InteractableItemCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -683,8 +731,8 @@ Transform:
   m_GameObject: {fileID: 5428926192951561637}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 650086495325917059}
@@ -730,7 +778,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.8555431, y: 0.2739174, z: 2.7614205}
   m_Center: {x: 0.013446212, y: -0.000000049670536, z: -3.6505804}

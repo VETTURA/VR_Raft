@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6565495239718252540}
   m_Layer: 0
   m_Name: Stick
-  m_TagString: InteractableItem
+  m_TagString: InteractableItemCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -266,26 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037615b48af4c5146ba77ef41ac494a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immersionDistance: 0.2
---- !u!114 &6565495239718252540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 288387833219823575}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25fbf10c5b852dc4fa54e076ed1f0d56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ocean: {fileID: 2100000, guid: 0cb735e1190c18f41940bf9d08ea77e5, type: 2}
-  oceanTexture: {fileID: 8400000, guid: 746208d49c069b14488e167a915d62cb, type: 2}
-  textureScanWidth: 60
-  NormalIntensity: 2
-  initialHeight: 0
-  heightStr: 20
-  yVelocity: 0
+  immersionDistance: 0.1
 --- !u!1 &1121021540535652034
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +281,7 @@ GameObject:
   - component: {fileID: 3447338442379246360}
   m_Layer: 0
   m_Name: stick LOD1(Clone)
-  m_TagString: InteractableItem
+  m_TagString: InteractableItemCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -406,7 +387,7 @@ GameObject:
   - component: {fileID: 2688866981838151301}
   m_Layer: 0
   m_Name: stick LOD0(Clone)
-  m_TagString: InteractableItem
+  m_TagString: InteractableItemCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

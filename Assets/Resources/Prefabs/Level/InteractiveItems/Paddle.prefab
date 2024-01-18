@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7757184350343803796}
   m_Layer: 0
   m_Name: paddle LOD0(Clone)
-  m_TagString: InteractableItem
+  m_TagString: InteractableItemCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 4531908676541122633}
   m_Layer: 0
   m_Name: paddle LOD1(Clone)
-  m_TagString: InteractableItem
+  m_TagString: InteractableItemCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: -5804819947874209743}
   m_Layer: 0
   m_Name: Paddle
-  m_TagString: InteractableItem
+  m_TagString: InteractableItemCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037615b48af4c5146ba77ef41ac494a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immersionDistance: 0.2
+  immersionDistance: 0.1
 --- !u!114 &4019868777589151867
 MonoBehaviour:
   m_ObjectHideFlags: 0
