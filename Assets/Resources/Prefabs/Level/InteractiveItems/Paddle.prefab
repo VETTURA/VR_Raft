@@ -227,10 +227,9 @@ GameObject:
   - component: {fileID: 346445577710222535}
   - component: {fileID: 4019868777589151867}
   - component: {fileID: 5735884232154888169}
-  - component: {fileID: -5804819947874209743}
   m_Layer: 0
   m_Name: Paddle
-  m_TagString: InteractableItemCollider
+  m_TagString: InteractableItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -499,24 +498,3 @@ MonoBehaviour:
   initialHeight: 0
   heightStr: 20
   yVelocity: 0
---- !u!65 &-5804819947874209743
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9190058752668736279}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.115, y: 0.01, z: -0.02}
-  m_Center: {x: 0.018, y: 0.02, z: 0}

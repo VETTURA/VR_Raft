@@ -45,14 +45,14 @@ GameObject:
   - component: {fileID: 6035931042728566730}
   - component: {fileID: 7728101451899682059}
   - component: {fileID: 2969898862051249021}
+  - component: {fileID: 3105099682956270002}
   - component: {fileID: 734586029486892081}
   - component: {fileID: 7404765156708424494}
   - component: {fileID: 6235841212869151769}
-  - component: {fileID: 3105099682956270002}
   - component: {fileID: 1244010281351099890}
   m_Layer: 0
   m_Name: Net
-  m_TagString: InteractableItemCollider
+  m_TagString: InteractableItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,6 +129,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &3105099682956270002
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673868604119587240}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.41347325, y: 0.043018818, z: 0.42713213}
+  m_Center: {x: -0.5466466, y: 0, z: -0.0038940907}
 --- !u!114 &734586029486892081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,27 +328,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!65 &3105099682956270002
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 673868604119587240}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.41347325, y: 0.043018818, z: 0.42713213}
-  m_Center: {x: -0.5466466, y: 0, z: -0.0038940907}
 --- !u!114 &1244010281351099890
 MonoBehaviour:
   m_ObjectHideFlags: 0

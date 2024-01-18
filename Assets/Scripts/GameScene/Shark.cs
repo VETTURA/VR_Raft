@@ -77,9 +77,7 @@ public class Shark : MonoBehaviour
 
         jaws = GameObject.Find("Jaws");
 
-        //attackPoints = GameObject.FindGameObjectsWithTag("AttackPoint").ToList();
         attackPoints = new List<GameObject>();
-
 
         StartCoroutine(GenerateChance());
     }

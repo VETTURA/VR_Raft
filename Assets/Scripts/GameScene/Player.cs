@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == INTERACTABLEITEM && other.gameObject.GetComponent<FoodController>())
+        if (other.gameObject.tag == INTERACTABLEITEM && other.gameObject.transform.parent.GetComponent<FoodController>())
         {
             Health += other.gameObject.GetComponent<FoodController>().restoreAmount;
             Destroy(other.gameObject);

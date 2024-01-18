@@ -7488,7 +7488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47990d481976c29418d3f21520727729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 10
+  _health: 100
   healingValue: 0.5
   _hunger: 100
   appetiteValue: 0
@@ -8449,7 +8449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7696548424635294051, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.55
+      value: -2.263
       objectReference: {fileID: 0}
     - target: {fileID: 7696548424635294051, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
       propertyPath: m_LocalRotation.w

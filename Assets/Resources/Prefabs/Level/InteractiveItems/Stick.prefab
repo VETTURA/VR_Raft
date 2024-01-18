@@ -14,10 +14,9 @@ GameObject:
   - component: {fileID: 4546367112717629769}
   - component: {fileID: 1816609585073859237}
   - component: {fileID: 5404960258721941631}
-  - component: {fileID: 6565495239718252540}
   m_Layer: 0
   m_Name: Stick
-  m_TagString: InteractableItemCollider
+  m_TagString: InteractableItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
