@@ -1,25 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class SailController : MonoBehaviour
 {
     public Animator animator;
 
-    private bool isFurled = false;
-    private bool isInflated = false;
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public bool isFurled = false;
+    public bool isInflated = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -39,7 +25,7 @@ public class SailController : MonoBehaviour
         }
     }
 
-    public void checkWeather(bool isWindy)
+    public void CheckWeather(bool isWindy)
     {
         if (isWindy == true)
         {
@@ -52,16 +38,4 @@ public class SailController : MonoBehaviour
             isInflated = false;
         }
     }
-
-    /*public void SailAction()
-    {
-        if (animator.GetBool("IsFurled") == false)
-        {
-            animator.SetBool("IsFurled", true);
-        }
-        else
-        {
-            animator.SetBool("IsFurled", false);
-        }
-    }*/
 }

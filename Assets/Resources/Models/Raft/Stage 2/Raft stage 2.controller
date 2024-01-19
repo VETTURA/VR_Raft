@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsFurled
+    m_ConditionEvent: IsWindy
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6006578434176557650}
@@ -34,7 +34,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: IsFurled
+    m_ConditionEvent: IsWindy
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8039682018985137264}
@@ -59,13 +59,13 @@ AnimatorController:
   m_Name: Raft stage 2
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: IsFurled
+  - m_Name: IsWindy
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: IsInflated
+  - m_Name: IsFurled
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -93,7 +93,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: IsInflated
+    m_ConditionEvent: IsFurled
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8039682018985137264}
@@ -118,7 +118,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsInflated
+    m_ConditionEvent: IsFurled
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7828937919894111607}

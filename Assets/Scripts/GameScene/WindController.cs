@@ -55,6 +55,11 @@ public class WindController : MonoBehaviour
                 
         }
 
-        sail.checkWeather(isWindy);
+        sail.CheckWeather(isWindy);
+    }
+
+    public void ChangeSail()
+    {
+        sail = FindObjectOfType<SailController>();
     }
 }

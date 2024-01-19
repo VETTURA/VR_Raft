@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -55,9 +56,20 @@ public class RaftController : MonoBehaviour
 
     private Vector3 targetPosition;
 
+    private WindController wind;
+    private SailController sail;
+
+    private float windFurledSpeed;
+    private float furledSpeed;
+
     void Start()
     {
         player = FindAnyObjectByType<Player>();
+        wind = FindAnyObjectByType<WindController>();
+        sail = FindAnyObjectByType<SailController>();
+
+        windFurledSpeed = RaftSpeed * 2.0f;
+        furledSpeed = RaftSpeed * 1.5f;
 
         currentStage = stage0;
 
@@ -68,8 +80,25 @@ public class RaftController : MonoBehaviour
     {
         var deltaTime = Time.fixedDeltaTime;
 
+        CheckWind();
         MoveRaft(deltaTime);
         HealthCheck();
+    }
+
+    private void CheckWind()
+    {
+        if (!sail.isFurled && wind.isWindy)
+        {
+            RaftSpeed = windFurledSpeed;
+        }
+        else if (!sail.isFurled)
+        {
+            RaftSpeed = furledSpeed;
+        }
+        else
+        {
+            RaftSpeed = 1.0f;
+        }
     }
 
     public void DamageRaft(float damageValue)
@@ -115,6 +144,9 @@ public class RaftController : MonoBehaviour
         }
 
         oldStage.SetActive(false);
+
+        sail = FindAnyObjectByType<SailController>();
+        FindFirstObjectByType<WindController>().ChangeSail();
     }
 
     private void MoveRaft(float deltaTime)

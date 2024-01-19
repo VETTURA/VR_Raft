@@ -1188,6 +1188,7 @@ GameObject:
   - component: {fileID: 99969629}
   - component: {fileID: 99969628}
   - component: {fileID: 99969627}
+  - component: {fileID: 99969630}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -1281,6 +1282,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 99969625}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &99969630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99969625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d97c7ae173f57a4190bb553c84bdbb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1697675268}
 --- !u!1 &120200059
 GameObject:
   m_ObjectHideFlags: 0
@@ -4167,6 +4181,7 @@ GameObject:
   - component: {fileID: 630268899}
   - component: {fileID: 630268898}
   - component: {fileID: 630268897}
+  - component: {fileID: 630268900}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -4260,6 +4275,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630268895}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &630268900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630268895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d97c7ae173f57a4190bb553c84bdbb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1021372166}
 --- !u!1 &641812480 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 21150dbae32b4b544b870370198401ca, type: 3}
@@ -5624,23 +5652,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4536054379777593256, guid: cfd2c632c2b0f4f4ca582a5ad9f75d7e, type: 3}
       propertyPath: m_AABB.m_Center.y
-      value: 0.0005061069
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4536054379777593256, guid: cfd2c632c2b0f4f4ca582a5ad9f75d7e, type: 3}
       propertyPath: m_AABB.m_Center.z
-      value: -0.00000010477379
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4536054379777593256, guid: cfd2c632c2b0f4f4ca582a5ad9f75d7e, type: 3}
       propertyPath: m_AABB.m_Extent.x
-      value: 0.006961321
+      value: -0.0245
       objectReference: {fileID: 0}
     - target: {fileID: 4536054379777593256, guid: cfd2c632c2b0f4f4ca582a5ad9f75d7e, type: 3}
       propertyPath: m_AABB.m_Extent.y
-      value: 0.00053116353
+      value: 0.0005
       objectReference: {fileID: 0}
     - target: {fileID: 4536054379777593256, guid: cfd2c632c2b0f4f4ca582a5ad9f75d7e, type: 3}
       propertyPath: m_AABB.m_Extent.z
-      value: 0.0031070847
+      value: 0.0115
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -6728,23 +6756,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4536054379777593256, guid: a4c8b25c59e8ad041aacb3ab2657a3cd, type: 3}
       propertyPath: m_AABB.m_Center.y
-      value: 0.0005061069
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4536054379777593256, guid: a4c8b25c59e8ad041aacb3ab2657a3cd, type: 3}
       propertyPath: m_AABB.m_Center.z
-      value: -0.00000010477379
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4536054379777593256, guid: a4c8b25c59e8ad041aacb3ab2657a3cd, type: 3}
       propertyPath: m_AABB.m_Extent.x
-      value: 0.006961321
+      value: -0.0245
       objectReference: {fileID: 0}
     - target: {fileID: 4536054379777593256, guid: a4c8b25c59e8ad041aacb3ab2657a3cd, type: 3}
       propertyPath: m_AABB.m_Extent.y
-      value: 0.00053116353
+      value: 0.0005
       objectReference: {fileID: 0}
     - target: {fileID: 4536054379777593256, guid: a4c8b25c59e8ad041aacb3ab2657a3cd, type: 3}
       propertyPath: m_AABB.m_Extent.z
-      value: 0.0031070847
+      value: 0.0115
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
