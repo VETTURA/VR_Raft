@@ -14,6 +14,7 @@ public class SwimConrtoller : MonoBehaviour
 
     private Player player;
     private Water water;
+    private DamageZone damageZone;
 
     private bool isSwimming = false;
     private Vector3 swimPosition;
@@ -22,6 +23,7 @@ public class SwimConrtoller : MonoBehaviour
     {
         player = FindAnyObjectByType<Player>();
         water = FindAnyObjectByType<Water>();
+        damageZone = FindAnyObjectByType<DamageZone>();
     }
 
     void Update()
@@ -38,6 +40,7 @@ public class SwimConrtoller : MonoBehaviour
         if (isSwimming)
         {
             player.transform.position = swimPosition;
+            damageZone.transform.position = swimPosition;
         }
     }
 }
