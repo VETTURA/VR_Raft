@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
         get => _health;
         set
         {
-            Debug.Log("Health:" + _health);
+            //Debug.Log("Health:" + _health);
             _health = value;
             if (_health < 0)
             {
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
         get => _hunger;
         set
         {
-            Debug.Log("Hunger:" + _hunger);
+            //Debug.Log("Hunger:" + _hunger);
             _hunger = value;
         }
     }
