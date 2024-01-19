@@ -33,8 +33,9 @@ public class RaftController : MonoBehaviour
     public float RaftHealth
     {
         get => _raftHealth;
-        set { 
-            _raftHealth = value; 
+        set
+        {
+            _raftHealth = value;
         }
     }
 
@@ -79,7 +80,7 @@ public class RaftController : MonoBehaviour
 
     void FixedUpdate()
     {
-        var deltaTime = Time.deltaTime;
+        var deltaTime = Time.fixedDeltaTime;
 
         MoveRaft(deltaTime);
         HealthCheck();
@@ -115,9 +116,9 @@ public class RaftController : MonoBehaviour
 
         List<GameObject> interactObjects = new();
 
-        foreach(Transform child in oldStage.transform)
+        foreach (Transform child in oldStage.transform)
         {
-            if(child.tag == RaftCollision.INTERACTABLEITEMTAG)
+            if (child.tag == RaftCollision.INTERACTABLEITEMTAG)
             {
                 interactObjects.Add(child.gameObject);
             }
@@ -156,7 +157,7 @@ public class RaftController : MonoBehaviour
             raftMainObject.transform.rotation = Quaternion.Slerp(raftMainObject.transform.rotation, Quaternion.LookRotation(targetPoint.transform.position - raftMainObject.transform.position), rotationSpeed * deltaTime);
         }
 
-        if(raftMainObject.transform.rotation == Quaternion.LookRotation(targetPoint.transform.position - raftMainObject.transform.position))
+        if (raftMainObject.transform.rotation == Quaternion.LookRotation(targetPoint.transform.position - raftMainObject.transform.position))
         {
             isRotate = false;
         }
