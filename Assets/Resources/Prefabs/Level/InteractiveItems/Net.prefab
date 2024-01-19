@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   immersionDistance: 0.1
+  interactable: {fileID: 0}
 --- !u!114 &6235841212869151769
 MonoBehaviour:
   m_ObjectHideFlags: 0

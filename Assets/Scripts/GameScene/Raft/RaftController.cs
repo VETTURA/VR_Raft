@@ -1,11 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Drawing;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class RaftController : MonoBehaviour
 {
+    [SerializeField]
+    public GameObject targetPoint;
+
+    [SerializeField]
+    public GameObject raftMainObject;
+
     [SerializeField]
     public GameObject stage0;
 
@@ -25,8 +34,9 @@ public class RaftController : MonoBehaviour
     public float RaftHealth
     {
         get => _raftHealth;
-        set { 
-            _raftHealth = value; 
+        set
+        {
+            _raftHealth = value;
         }
     }
 
@@ -54,7 +64,13 @@ public class RaftController : MonoBehaviour
         }
     }
 
-    private Vector3 targetPosition;
+    private bool isRotate = false;
+
+    public enum TurnSide
+    {
+        Left,
+        Right,
+    }
 
     private WindController wind;
     private SailController sail;
@@ -72,8 +88,6 @@ public class RaftController : MonoBehaviour
         furledSpeed = RaftSpeed * 1.5f;
 
         currentStage = stage0;
-
-        targetPosition = new(transform.position.x, transform.position.y, transform.position.z - 1996);
     }
 
     void FixedUpdate()
@@ -83,6 +97,7 @@ public class RaftController : MonoBehaviour
         CheckWind();
         MoveRaft(deltaTime);
         HealthCheck();
+        RotateRaft(deltaTime);
     }
 
     private void CheckWind()
@@ -130,9 +145,9 @@ public class RaftController : MonoBehaviour
 
         List<GameObject> interactObjects = new();
 
-        foreach(Transform child in oldStage.transform)
+        foreach (Transform child in oldStage.transform)
         {
-            if(child.tag == RaftCollision.INTERACTABLEITEMTAG)
+            if (child.tag == RaftCollision.INTERACTABLEITEMTAG)
             {
                 interactObjects.Add(child.gameObject);
             }
@@ -153,7 +168,30 @@ public class RaftController : MonoBehaviour
     {
         if (IsMoving)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, RaftSpeed * deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPoint.transform.position, RaftSpeed * deltaTime);
+        }
+    }
+
+    public void Turn(TurnSide side, float degrees)
+    {
+        var turnDegress = side == TurnSide.Left ? degrees : -degrees;
+        targetPoint.transform.RotateAround(new(0, 0, 0), Vector3.up, turnDegress);
+
+        isRotate = true;
+    }
+
+    private void RotateRaft(float deltaTime)
+    {
+        var rotationSpeed = 1.0f;
+
+        if (isRotate)
+        {
+            raftMainObject.transform.rotation = Quaternion.Slerp(raftMainObject.transform.rotation, Quaternion.LookRotation(targetPoint.transform.position - raftMainObject.transform.position), rotationSpeed * deltaTime);
+        }
+
+        if (raftMainObject.transform.rotation == Quaternion.LookRotation(targetPoint.transform.position - raftMainObject.transform.position))
+        {
+            isRotate = false;
         }
     }
 }
