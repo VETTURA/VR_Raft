@@ -1,10 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class RaftController : MonoBehaviour
 {
+    [SerializeField]
+    public GameObject targetPoint;
+
+    [SerializeField]
+    public GameObject raftMainObject;
+
     [SerializeField]
     public GameObject stage0;
 
@@ -53,7 +62,11 @@ public class RaftController : MonoBehaviour
         }
     }
 
-    private Vector3 targetPosition;
+    enum TurnSide
+    {
+        Left,
+        Right,
+    }
 
     void Start()
     {
@@ -61,7 +74,7 @@ public class RaftController : MonoBehaviour
 
         currentStage = stage0;
 
-        targetPosition = new(transform.position.x, transform.position.y, transform.position.z - 1996);
+        Turn(TurnSide.Left, 60);
     }
 
     void FixedUpdate()
@@ -121,7 +134,13 @@ public class RaftController : MonoBehaviour
     {
         if (IsMoving)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, RaftSpeed * deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPoint.transform.position, RaftSpeed * deltaTime);
         }
+    }
+
+    private void Turn(TurnSide side, float degrees)
+    {
+        var turnDegress = side == TurnSide.Left ? -degrees : degrees;
+        transform.RotateAround(raftMainObject.transform.localPosition, Vector3.up, turnDegress);
     }
 }
