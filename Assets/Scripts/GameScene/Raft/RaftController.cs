@@ -137,6 +137,7 @@ public class RaftController : MonoBehaviour
 
     public void ChangeState(GameObject oldStage, GameObject newStage)
     {
+        transform.GetComponent<AudioSource>().PlayOneShot(transform.GetComponent<AudioSource>().clip);
         currentStage = newStage;
 
         newStage.SetActive(true);

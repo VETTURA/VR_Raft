@@ -1,10 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Shark : MonoBehaviour
 {
+    private static AudioManager _instance;
+
+    public static AudioManager Instance
+    {
+        get { return _instance; }
+    }
+
+    public delegate void PlaySound(AudioManager manager);
+    public static event PlaySound sound;
+
     private System.Random random = new();
 
     private enum SharkState
@@ -75,9 +86,15 @@ public class Shark : MonoBehaviour
 
         attackPoints = new List<GameObject>();
 
+        sound += PlayAttackSound;
+
         StartCoroutine(GenerateChance());
     }
 
+    void PlayAttackSound(AudioManager manager)
+    {
+        AudioManager.instance.Play("OnAttack");
+    }
    
     void FixedUpdate()
     {
@@ -135,6 +152,8 @@ public class Shark : MonoBehaviour
         if (transform.localPosition == nearestPoint.transform.localPosition)
         {
             raft.DamageRaft(sharkDamage);
+            
+            
         }
 
 
@@ -236,6 +255,7 @@ public class Shark : MonoBehaviour
             MoveItems moveItem = other.gameObject.transform.parent.GetComponent<MoveItems>();
             if (!moveItem.IsMove) 
             {
+                transform.GetComponent<AudioSource>().PlayOneShot(transform.GetComponent<AudioSource>().clip);
                 sharkState = SharkState.RunAway;
             }
         }
