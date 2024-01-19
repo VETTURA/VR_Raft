@@ -7,6 +7,9 @@ public class SailController : MonoBehaviour
 {
     public Animator animator;
 
+    private bool isFurled = false;
+    private bool isInflated = false;
+
     void Start()
     {
         
@@ -26,10 +29,12 @@ public class SailController : MonoBehaviour
             {
                 animator.SetBool("IsWindy", false);
                 animator.SetBool("IsFurled", true);
+                isFurled = true;
             }
             else
             {
                 animator.SetBool("IsFurled", false);
+                isFurled = false;
             }
         }
     }
@@ -39,10 +44,12 @@ public class SailController : MonoBehaviour
         if (isWindy == true)
         {
             animator.SetBool("IsWindy", true);
+            isInflated = true;
         }
         else
         {
             animator.SetBool("IsWindy", false);
+            isInflated = false;
         }
     }
 
