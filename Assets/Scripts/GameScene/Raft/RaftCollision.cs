@@ -23,10 +23,15 @@ public class RaftCollision: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == player.name)
+        if(other.name == "test")
         {
             player.transform.parent.SetParent(gameObject.transform, true);
         }
+
+        //if (other.name == player.name)
+        //{
+        //    player.transform.parent.SetParent(gameObject.transform, true);
+        //}
 
         if (other.tag == INTERACTABLEITEMTAGCOLLIDER)
         {
@@ -44,7 +49,7 @@ public class RaftCollision: MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.name == player.name)
+        if (other.name == "test")
         {
             player.transform.parent.SetParent(null, true);
         }
