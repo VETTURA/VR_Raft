@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class MoveItems : MonoBehaviour
 {
@@ -48,14 +44,12 @@ public class MoveItems : MonoBehaviour
     [SerializeField]
     private float emergeDistance = 3.0f;
 
-    private RaftController raft;
     private Water water;
 
     private Vector3 targetPosition;
 
     void Start()
     {
-        raft = FindFirstObjectByType<RaftController>();
         water = FindAnyObjectByType<Water>();
 
         CalculateTargetPosition();

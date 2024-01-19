@@ -1,14 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Shark : MonoBehaviour
 {
-
     private System.Random random = new();
 
     private enum SharkState

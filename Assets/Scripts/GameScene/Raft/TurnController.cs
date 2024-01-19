@@ -19,7 +19,6 @@ public class TurnController : MonoBehaviour
 
         if (paddle != null && itemController.interactable.isSelected)
         {
-            Rigidbody rbPaddle = other.GetComponent<Rigidbody>();
             raftController.Turn(side, 1 * paddle.coeffPaddle);
         }
     }

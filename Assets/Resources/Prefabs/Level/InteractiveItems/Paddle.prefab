@@ -515,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153fd75aafa3e804693b5118ccfd22b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coeffPaddle: 1
+  coeffPaddle: 2
 --- !u!114 &5735884232154888169
 MonoBehaviour:
   m_ObjectHideFlags: 0

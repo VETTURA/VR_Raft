@@ -32,9 +32,9 @@ public class ItemController : MonoBehaviour
         water = FindFirstObjectByType<Water>(); 
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        var deltaTime = Time.deltaTime;
+        var deltaTime = Time.fixedDeltaTime;
 
         CheckSelectedItem();
         CheckWaterTouch();
