@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class RaftCollision: MonoBehaviour
@@ -11,6 +8,7 @@ public class RaftCollision: MonoBehaviour
     public const string INTERACTABLEITEMTAGCOLLIDER = "InteractableItemCollider";
     public const string ROCKTAG = "Rock";
 
+    private const string PLAYERNAME = "Collider Player";
     void Start()
     {
         player = FindObjectOfType<Player>();
@@ -23,7 +21,7 @@ public class RaftCollision: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == player.name)
+        if(other.name == PLAYERNAME)
         {
             player.transform.parent.SetParent(gameObject.transform, true);
         }
@@ -44,7 +42,7 @@ public class RaftCollision: MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.name == player.name)
+        if (other.name == PLAYERNAME)
         {
             player.transform.parent.SetParent(null, true);
         }

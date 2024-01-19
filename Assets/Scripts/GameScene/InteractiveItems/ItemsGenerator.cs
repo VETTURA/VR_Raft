@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class ItemsGenerator : MonoBehaviour
 {
     private System.Random rnd = new();
 
-    private RaftController raft;
+    [SerializeField]
+    private GameObject raft;
     private Water water;
 
     private struct ItemPrefab
@@ -36,19 +36,18 @@ public class ItemsGenerator : MonoBehaviour
 
     //Генерит ошибки
     //[SerializeField]
-    public float minXSpawnPosition = -10.0f;
+    public float minXSpawnPosition = -20.0f;
 
     //Генерит ошибки
     //[SerializeField]
-    public float maxXSpawnPosition = 10.0f;
+    public float maxXSpawnPosition = 20.0f;
 
     //Генерит ошибки
     //[SerializeField]
-    public float distanceSpawn = 30.0f;
+    public float distanceSpawn = 40.0f;
 
     void Start()
     {
-        raft = FindFirstObjectByType<RaftController>();
         water = FindFirstObjectByType<Water>();
         
         GetPrefabs();
@@ -72,7 +71,10 @@ public class ItemsGenerator : MonoBehaviour
     {
         var zPosition = raft.transform.position.z - distanceSpawn;
         var yPosition = water.transform.position.y + 0.2f;
-        var xPosition = (float)(rnd.NextDouble() * (maxXSpawnPosition - minXSpawnPosition) + minXSpawnPosition);
+
+        var maxX = raft.transform.position.x + maxXSpawnPosition;
+        var minX = raft.transform.position.x - Math.Abs(minXSpawnPosition);
+        var xPosition = (float)(rnd.NextDouble() * (maxX - minX) + minX);
 
         var probability = (float)rnd.NextDouble();
 

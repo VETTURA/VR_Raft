@@ -9,6 +9,7 @@ TagManager:
   - Anchor
   - InteractableItem
   - InteractableItemCollider
+  - Hand
   layers:
   - Default
   - TransparentFX

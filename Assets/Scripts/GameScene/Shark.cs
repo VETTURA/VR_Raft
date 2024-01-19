@@ -1,14 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Shark : MonoBehaviour
 {
-
     private System.Random random = new();
 
     private enum SharkState
@@ -210,17 +206,17 @@ public class Shark : MonoBehaviour
         while (true)
         {
             var chance = random.NextDouble();
-            Debug.Log("Chance: " + chance);
+            //Debug.Log("Chance: " + chance);
             
             if (attackChance > chance && sharkState == SharkState.Hunting)
             {
-                Debug.Log("Shark state Attack by chance " + chance);
+                //Debug.Log("Shark state Attack by chance " + chance);
                 sharkState = SharkState.Attack;
             }
 
             if (huntingChance > chance && sharkState == SharkState.Starting)
             {
-                Debug.Log("Shark state Hunting by chance " + chance);
+                //Debug.Log("Shark state Hunting by chance " + chance);
                 sharkState = SharkState.Hunting;
             }
 
@@ -230,14 +226,18 @@ public class Shark : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Rock")
+        if(other.tag == RaftCollision.ROCKTAG)
         {
             sharkState = SharkState.RunAway;
         }
 
-        if(other.tag == "InteractableItem")
+        if(other.tag == RaftCollision.INTERACTABLEITEMTAGCOLLIDER)
         {
-            sharkState = SharkState.RunAway;
+            MoveItems moveItem = other.gameObject.transform.parent.GetComponent<MoveItems>();
+            if (!moveItem.IsMove) 
+            {
+                sharkState = SharkState.RunAway;
+            }
         }
     }
 }
