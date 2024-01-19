@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1708446804335145880}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -134,7 +134,7 @@ Transform:
   m_GameObject: {fileID: 7734092954047023234}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -223,9 +223,11 @@ GameObject:
   - component: {fileID: 4949325504996033258}
   - component: {fileID: 8286674387479585302}
   - component: {fileID: 4943000907939683101}
+  - component: {fileID: 4074837428730078359}
   - component: {fileID: 4788228079435898593}
   - component: {fileID: 346445577710222535}
   - component: {fileID: 4019868777589151867}
+  - component: {fileID: 3571304659528709369}
   - component: {fileID: 5735884232154888169}
   m_Layer: 0
   m_Name: Paddle
@@ -301,6 +303,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &4074837428730078359
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9190058752668736279}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.04512833, y: 0.002567455, z: 0.017178023}
+  m_Center: {x: 0.054027352, y: -0.0011725212, z: 0.0000056251884}
 --- !u!114 &4788228079435898593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   immersionDistance: 0.1
+  interactable: {fileID: 0}
 --- !u!114 &4019868777589151867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,6 +503,19 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &3571304659528709369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9190058752668736279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 153fd75aafa3e804693b5118ccfd22b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coeffPaddle: 1
 --- !u!114 &5735884232154888169
 MonoBehaviour:
   m_ObjectHideFlags: 0

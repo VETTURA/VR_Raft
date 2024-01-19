@@ -18,8 +18,7 @@ public class FoodController : MonoBehaviour
         if (other.gameObject.tag == RaftCollision.INTERACTABLEITEMTAGCOLLIDER && food != null)
         {
             player.Eating(food.FoodValue);
-            Destroy(other.gameObject);
-            Destroy(other.gameObject.transform.parent);
+            Destroy(other.gameObject.transform.parent.gameObject);
         }
     }
 }

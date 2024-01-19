@@ -57,6 +57,9 @@ public class ItemController : MonoBehaviour
         {
             InNat = false;
             moveItems.IsMove = !interactable.isSelected;
+
+            rb.isKinematic = false; 
+            rb.useGravity = true;
         }
 
         if (!interactable.isSelected && !moveItems.IsMove && !InNat)

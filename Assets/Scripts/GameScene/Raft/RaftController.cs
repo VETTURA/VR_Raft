@@ -62,7 +62,9 @@ public class RaftController : MonoBehaviour
         }
     }
 
-    enum TurnSide
+    private bool isRotate = false;
+
+    public enum TurnSide
     {
         Left,
         Right,
@@ -73,16 +75,15 @@ public class RaftController : MonoBehaviour
         player = FindAnyObjectByType<Player>();
 
         currentStage = stage0;
-
-        Turn(TurnSide.Left, 60);
     }
 
     void FixedUpdate()
     {
-        var deltaTime = Time.fixedDeltaTime;
+        var deltaTime = Time.deltaTime;
 
         MoveRaft(deltaTime);
         HealthCheck();
+        RotateRaft(deltaTime);
     }
 
     public void DamageRaft(float damageValue)
@@ -138,9 +139,26 @@ public class RaftController : MonoBehaviour
         }
     }
 
-    private void Turn(TurnSide side, float degrees)
+    public void Turn(TurnSide side, float degrees)
     {
-        var turnDegress = side == TurnSide.Left ? -degrees : degrees;
-        transform.RotateAround(raftMainObject.transform.localPosition, Vector3.up, turnDegress);
+        var turnDegress = side == TurnSide.Left ? degrees : -degrees;
+        targetPoint.transform.RotateAround(new(0, 0, 0), Vector3.up, turnDegress);
+
+        isRotate = true;
+    }
+
+    private void RotateRaft(float deltaTime)
+    {
+        var rotationSpeed = 1.0f;
+
+        if (isRotate)
+        {
+            raftMainObject.transform.rotation = Quaternion.Slerp(raftMainObject.transform.rotation, Quaternion.LookRotation(targetPoint.transform.position - raftMainObject.transform.position), rotationSpeed * deltaTime);
+        }
+
+        if(raftMainObject.transform.rotation == Quaternion.LookRotation(targetPoint.transform.position - raftMainObject.transform.position))
+        {
+            isRotate = false;
+        }
     }
 }
