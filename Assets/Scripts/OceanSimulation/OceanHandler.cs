@@ -5,6 +5,7 @@ using UnityEngine;
 public class OceanHandler : MonoBehaviour
 {
     public GameObject child;
+    public GameObject foggers;
 
     [SerializeField]
     private Water waterComponent;
@@ -39,10 +40,12 @@ public class OceanHandler : MonoBehaviour
         if (waterComponent._waterSettings == waterComponent.WaterState[0])
         {
             waterComponent.WaterSettingsBlendHandler(waterComponent.WaterState[1], duration);
+            foggers.GetComponent<ParticleSystem>().Play();
         }
         if (waterComponent._waterSettings == waterComponent.WaterState[1])
         {
             waterComponent.WaterSettingsBlendHandler(waterComponent.WaterState[0], duration);
+            foggers.GetComponent<ParticleSystem>().Stop();
         }
 
         while (time < duration)
@@ -87,6 +90,7 @@ public class OceanHandler : MonoBehaviour
 
     private void Start()
     {
+        foggers.GetComponent<ParticleSystem>().Stop();
         skyboxColors.Add(new Color(0.6f, 0.6f, 0.7f));
         skyboxColors.Add(new Color(0, 0, 0));
         RenderSettings.skybox.SetColor("_SkyTint", skyboxColors[0]);

@@ -89,8 +89,8 @@ public class Buoyancy : MonoBehaviour
         var currNormal = transform.TransformDirection(Vector3.up);
         if (Vector3.Distance(currNormal, targetNormal) > NormalThreshold)
         {
-            var fromLook = Quaternion.LookRotation(Vector3.forward - Vector3.Project(Vector3.forward, currNormal), currNormal);
-            var toLook = Quaternion.LookRotation(Vector3.forward - Vector3.Project(Vector3.forward, targetNormal), targetNormal);
+            var fromLook = Quaternion.LookRotation(transform.forward - Vector3.Project(transform.forward, currNormal), currNormal);
+            var toLook = Quaternion.LookRotation(transform.forward - Vector3.Project(transform.forward, targetNormal), targetNormal);
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.RotateTowards(fromLook, toLook, 90f), Time.deltaTime * NormalLerpSpeed);
         }
 

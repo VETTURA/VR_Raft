@@ -96,6 +96,9 @@ public class Water : MonoBehaviour
     private Color tipColor;
     private float tipAttenuation;
 
+    private Color fogColor;
+    private float fogFactor;
+
     private void SetFragmentSettings()
     {
         waterMaterial.SetInt("_FragmentWaveCount", fragmentWaveCount);
@@ -302,6 +305,7 @@ public class Water : MonoBehaviour
 
     private void Start()
     {
+        fogColor = RenderSettings.fogColor;
         //if (startActive) { gameObject.SetActive(true); }
         //if (!startActive) { gameObject.SetActive(false); }
 
@@ -314,6 +318,10 @@ public class Water : MonoBehaviour
         CreateMaterial();
         RetrieveInitSettings(_waterSettings);
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        cam.depthTextureMode = cam.depthTextureMode | DepthTextureMode.Depth;
+
+        waterMaterial.SetVector("_FogColor", fogColor);
+        waterMaterial.SetFloat("_FogFactor", 0.001f);
 
         weatherChanged += WaterSettingsBlendHandler;
     }
