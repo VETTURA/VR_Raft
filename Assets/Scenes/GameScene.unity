@@ -2869,6 +2869,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 439588100}
+  - component: {fileID: 439588101}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -2894,6 +2895,23 @@ Transform:
   - {fileID: 1823090284}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &439588101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439588099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45843441047cf3e42a73d7efc1aa9a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  coolDown: 10
+  windChance: 0.8
+  isWindy: 0
+  sail: {fileID: 0}
 --- !u!1 &452312862
 GameObject:
   m_ObjectHideFlags: 0
@@ -5319,6 +5337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1427577278}
+  weather: {fileID: 0}
 --- !u!1 &975483282
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ public class SailController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,16 +24,25 @@ public class SailController : MonoBehaviour
         {
             if (animator.GetBool("IsFurled") == false)
             {
-                if (animator.GetBool("IsWindy") == true)
-                {
-                    animator.SetBool("IsWindy", false);
-                }
+                animator.SetBool("IsWindy", false);
                 animator.SetBool("IsFurled", true);
             }
             else
             {
                 animator.SetBool("IsFurled", false);
             }
+        }
+    }
+
+    public void checkWeather(bool isWindy)
+    {
+        if (isWindy == true)
+        {
+            animator.SetBool("IsWindy", true);
+        }
+        else
+        {
+            animator.SetBool("IsWindy", false);
         }
     }
 
